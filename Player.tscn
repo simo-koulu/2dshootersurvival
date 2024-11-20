@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=3 uid="uid://dixxm3lfknjlc"]
+
+[ext_resource type="Texture2D" uid="uid://basm5salorska" path="res://assets/Player/patrick.jpg" id="1_8rg85"]
+[ext_resource type="Script" path="res://player.gd" id="1_u56ws"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6bgu"]
+radius = 29.0
+height = 68.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yxqb5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8rg85")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="FontFile" id="FontFile_qpcub"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/35/0/ascent = 0.0
+cache/0/35/0/descent = 0.0
+cache/0/35/0/underline_position = 0.0
+cache/0/35/0/underline_thickness = 0.0
+cache/0/35/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_kkbj1"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/451/0/ascent = 0.0
+cache/0/451/0/descent = 0.0
+cache/0/451/0/underline_position = 0.0
+cache/0/451/0/underline_thickness = 0.0
+cache/0/451/0/scale = 1.0
+cache/0/45/0/ascent = 0.0
+cache/0/45/0/descent = 0.0
+cache/0/45/0/underline_position = 0.0
+cache/0/45/0/underline_thickness = 0.0
+cache/0/45/0/scale = 1.0
+cache/0/4560/0/ascent = 0.0
+cache/0/4560/0/descent = 0.0
+cache/0/4560/0/underline_position = 0.0
+cache/0/4560/0/underline_thickness = 0.0
+cache/0/4560/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(574, 311)
+script = ExtResource("1_u56ws")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_r6bgu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+position = Vector2(-1.25, -0.25)
+scale = Vector2(0.0464844, 0.0909722)
+sprite_frames = SubResource("SpriteFrames_yxqb5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -87.0
+offset_top = 51.0
+offset_right = 133.0
+offset_bottom = 103.0
+theme_override_fonts/font = SubResource("FontFile_qpcub")
+theme_override_font_sizes/font_size = 25
+text = "press E to interact"
+
+[node name="Pause" type="Label" parent="."]
+visible = false
+offset_left = -120.0
+offset_top = -184.0
+offset_right = 123.0
+offset_bottom = -54.0
+theme_override_fonts/font = SubResource("FontFile_kkbj1")
+theme_override_font_sizes/font_size = 80
+text = "PAUSE"
