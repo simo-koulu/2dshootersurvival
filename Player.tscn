@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dixxm3lfknjlc"]
+[gd_scene load_steps=8 format=3 uid="uid://dixxm3lfknjlc"]
 
 [ext_resource type="Texture2D" uid="uid://basm5salorska" path="res://assets/Player/patrick.jpg" id="1_8rg85"]
 [ext_resource type="Script" path="res://player.gd" id="1_u56ws"]
+[ext_resource type="Script" path="res://gun_node.gd" id="3_p67us"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6bgu"]
 radius = 29.0
@@ -22,6 +23,11 @@ animations = [{
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -37,16 +43,16 @@ cache/0/35/0/descent = 0.0
 cache/0/35/0/underline_position = 0.0
 cache/0/35/0/underline_thickness = 0.0
 cache/0/35/0/scale = 1.0
-cache/0/25/0/ascent = 0.0
-cache/0/25/0/descent = 0.0
-cache/0/25/0/underline_position = 0.0
-cache/0/25/0/underline_thickness = 0.0
-cache/0/25/0/scale = 1.0
 
 [sub_resource type="FontFile" id="FontFile_kkbj1"]
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -72,11 +78,6 @@ cache/0/60/0/descent = 0.0
 cache/0/60/0/underline_position = 0.0
 cache/0/60/0/underline_thickness = 0.0
 cache/0/60/0/scale = 1.0
-cache/0/80/0/ascent = 0.0
-cache/0/80/0/descent = 0.0
-cache/0/80/0/underline_position = 0.0
-cache/0/80/0/underline_thickness = 0.0
-cache/0/80/0/scale = 1.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(574, 311)
@@ -110,3 +111,17 @@ offset_bottom = -54.0
 theme_override_fonts/font = SubResource("FontFile_kkbj1")
 theme_override_font_sizes/font_size = 80
 text = "PAUSE"
+
+[node name="GunNode" type="Node2D" parent="."]
+script = ExtResource("3_p67us")
+
+[node name="BulletStartingPoint" type="Node2D" parent="GunNode"]
+position = Vector2(64, 0)
+
+[node name="Line2D" type="Line2D" parent="GunNode"]
+position = Vector2(-7.62939e-06, 0)
+rotation = 3.14159
+scale = Vector2(1.22034, 1)
+points = PackedVector2Array(-53, 0, 0, 0)
+width = 3.0
+default_color = Color(0.0768358, 0.0768358, 0.0768358, 1)

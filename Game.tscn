@@ -114,7 +114,16 @@ tile_map_data = PackedByteArray("AADr//b/AAAHAAEAAADr//f/AAAHAAEAAADr//j/AAAHAAE
 tile_set = SubResource("TileSet_8i27p")
 
 [node name="Player" parent="." instance=ExtResource("1_ub058")]
-position = Vector2(36, 6)
+position = Vector2(169, 87)
 
 [node name="paavonpc" parent="." instance=ExtResource("4_kh6x1")]
 position = Vector2(539, 78)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = -212.0
+offset_top = -146.0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "liikkuu : WASD
+Ampuu : F
+Pause : esc"

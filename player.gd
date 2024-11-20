@@ -3,6 +3,7 @@ extends CharacterBody2D
 var speed = 400
 
 @onready var collisionShape = get_node("CollisionShape2D")
+# hakee hahmon, johon verrataan onko tarpeeksi lähellä
 @onready var npc = get_node("../paavonpc")
 
 var paused = false
@@ -29,17 +30,21 @@ func _look_at_mouse(delta_value):
 	var mouse_position = get_global_mouse_position()
 	var target_angle = global_position.angle_to_point(mouse_position)
 	var current_angle = collisionShape.rotation
+	var angle_diff = wrapf(target_angle - current_angle, -PI, PI)
 	
-	print("mouse position","   ", mouse_position)
-	print("target_angle","   ", target_angle)
-	print("current_angle","   ", current_angle)
+	#print("mouse position","   ", mouse_position)
+	#print("target_angle","   ", target_angle)
+	#print("current_angle","   ", current_angle)
+	#print("angle_diff", "    ", angle_diff)
 	var rotation_speed = 15
 	
-	# tekee kääntymisestä tasaisempaa 
-	collisionShape.rotation = lerp(current_angle, target_angle, rotation_speed * delta_value)
+	# lerp() funktio tekee kääntymisestä tasaisempaa 
+	# kaksi eri tapaa käsitellä kääntymistä, lerp() paljon monimutkaisempi mutta ase ja hahmo kääntyy erikseen
+	# gemini AI:n masinoima funktio
+	collisionShape.rotation = lerp(current_angle, current_angle + angle_diff, rotation_speed * delta_value)
+	#collisionShape.look_at(mouse_position)
 	
 	# pitäis kääntää patrikki toisinpäin jos katsoo liikaa alas tai ylös, ei toimi ja käyttäytyy oudosti
-	
 	#var angle_radians = global_position.angle_to_point(mouse_position)
 	#var angle_degrees = rad_to_deg(angle_radians)
 	#var anim = get_node("AnimatedSprite2D")
@@ -56,8 +61,8 @@ func _physics_process(delta):
 	move_and_slide()
 	_get_input()
 	_look_at_mouse(delta)
-	
-	# jos tarpeeksi lähellä jotain hahmoa, laita tekstipalikka näkyviin ja vaihda muuttujan arvo
+
+	# jos tarpeeksi lähellä jotain hahmoa, laita tekstipalikka näkyviin
 	# tässä esimerkissä hahmo on paavo, hahmo pitää hakea erikseen get_nodella.
 	var distance = collisionShape.global_position.distance_to(npc.global_position)
 	if distance <= 150:

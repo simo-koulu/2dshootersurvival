@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bddf4jv03vmwy"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_i75pe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qy10g"]
+radius = 2.0
+
+[node name="Bullet" type="CharacterBody2D"]
+position = Vector2(80, 39)
+script = ExtResource("1_i75pe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qy10g")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-2, 0)
+points = PackedVector2Array(7, -1, -4, 1)
