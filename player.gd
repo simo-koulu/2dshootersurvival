@@ -1,10 +1,14 @@
+class_name Player
+
 extends CharacterBody2D
 
 var speed = 400
 
-@onready var collisionShape = get_node("CollisionShape2D")
 # hakee hahmon, johon verrataan onko tarpeeksi lähellä
 @onready var npc = get_node("../paavonpc")
+
+@onready var collisionShape = get_node("CollisionShape2D")
+@onready var anim = get_node("CollisionShape2D/AnimatedSprite2D")
 
 var paused = false
 
@@ -23,6 +27,17 @@ func _pause():
 func _get_input():
 	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = input_direction * speed
+	
+	if velocity != Vector2.ZERO:
+		anim.play('run')
+	else: 
+		anim.play('idle')
+	
+	if velocity.x < 0:
+		anim.flip_h = true
+	else:
+		anim.flip_h = false
+		
 
 # kääntää hahmoa siihen hiiren suuntaan
 func _look_at_mouse(delta_value): 
@@ -60,8 +75,8 @@ func _ready():
 func _physics_process(delta):
 	move_and_slide()
 	_get_input()
-	_look_at_mouse(delta)
-
+	#_look_at_mouse(delta)
+	
 	# jos tarpeeksi lähellä jotain hahmoa, laita tekstipalikka näkyviin
 	# tässä esimerkissä hahmo on paavo, hahmo pitää hakea erikseen get_nodella.
 	var distance = collisionShape.global_position.distance_to(npc.global_position)
@@ -72,3 +87,6 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("ui_cancel"):
 		_pause()
+	
+	if Input.is_action_just_pressed("ui_focus_next"):
+		get_tree().quit()

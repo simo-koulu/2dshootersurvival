@@ -1,21 +1,26 @@
 extends Node2D
 
-# tilalla musta viiva Line2D 
-# vaihda aseen textuuriin, ja vaihda tähän sen Spriten nimi
-#@onready var anim = get_node('Line2D')
-
 func _ready() -> void:
 	pass
 
 func _process(delta) -> void :
+	#var mouse_position = get_global_mouse_position()
+	#
+	#var angle_radians = global_position.angle_to_point(mouse_position)
+	#var angle_degrees = rad_to_deg(angle_radians)
+	#
+	#look_at(mouse_position)
+	
 	var mouse_position = get_global_mouse_position()
+	var target_angle = global_position.angle_to_point(mouse_position)
+	var current_angle = self.rotation
+	var angle_diff = wrapf(target_angle - current_angle, -PI, PI)
+	var rotation_speed = 20
 	
-	var angle_radians = global_position.angle_to_point(mouse_position)
-	var angle_degrees = rad_to_deg(angle_radians)
-	
-	look_at(mouse_position)
-	
-	
+	# lerp() funktio tekee kääntymisestä tasaisempaa 
+	# kaksi eri tapaa käsitellä kääntymistä, lerp() paljon monimutkaisempi mutta ase ja hahmo kääntyy erikseen
+	# gemini AI:n masinoima funktio
+	self.rotation = lerp(current_angle, current_angle + angle_diff, rotation_speed * delta)
 	# flippaa aseen spriten peilikuvaksi, poista kommentointi ja vaihda anim-muuttujaan spriten nimi
 	#if angle_degrees > -90 and angle_degrees < 90 :
 		#anim.flip_v = false
