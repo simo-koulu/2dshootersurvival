@@ -61,7 +61,7 @@ func _physics_process(delta):
 	move_and_slide()
 	_get_input()
 	_look_at_mouse(delta)
-
+	
 	# jos tarpeeksi lähellä jotain hahmoa, laita tekstipalikka näkyviin
 	# tässä esimerkissä hahmo on paavo, hahmo pitää hakea erikseen get_nodella.
 	var distance = collisionShape.global_position.distance_to(npc.global_position)
@@ -72,3 +72,6 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("ui_cancel"):
 		_pause()
+	
+	if Input.is_action_just_pressed("ui_focus_next"):
+		get_tree().quit()

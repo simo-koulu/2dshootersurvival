@@ -24,6 +24,6 @@ position = Vector2(544, 276)
 shape = SubResource("CapsuleShape2D_ckfgm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(6, -8)
-scale = Vector2(0.0751613, 0.137945)
+position = Vector2(3.62501, 8.625)
+scale = Vector2(0.0782258, 0.111044)
 sprite_frames = SubResource("SpriteFrames_ad24y")

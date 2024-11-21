@@ -6,7 +6,8 @@ func initialize(pos):
 	transform = pos
 
 func _ready() -> void:
-	pass
+	get_node("Timer").start()
+	get_node("Timer").timeout.connect(_on_timer_timeout)
 	
 func _physics_process(delta):
 	var collision = move_and_collide(transform.x * speed * delta)
@@ -15,3 +16,7 @@ func _physics_process(delta):
 	if collision :
 		if collision.get_collider() is StaticBody2D or CollisionShape2D :
 			self.queue_free()
+
+# tuhoaa luodin 3s jälkeen, käyttäen Timer-nodea
+func _on_timer_timeout():
+	self.queue_free()

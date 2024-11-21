@@ -15,3 +15,6 @@ shape = SubResource("CircleShape2D_qy10g")
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(-2, 0)
 points = PackedVector2Array(7, -1, -4, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0

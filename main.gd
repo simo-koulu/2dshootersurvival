@@ -1,6 +1,5 @@
 extends Node2D
-
-@onready var rootNode = get_tree().get_root().get_node('Game')
+class_name Main
 
 @onready var paavopreload = preload("res://paavonpc.tscn")
 
@@ -11,10 +10,11 @@ var fireRateTimer: float = 60 / fireRate
 #käytetään jos on animoitavaa 
 #@onready var anim = get_node("Player/GunNode/AnimatedSprite2D")
 
-func shoot(pos) :
+func shoot() :
 	var b = preloadBullet.instantiate()
-	b.initialize(pos)
-	rootNode.add_sibling(b)
+	var bulletTransform = get_node('Player/GunNode/BulletStartingPoint').global_transform
+	b.initialize(bulletTransform)
+	Global.main.add_sibling(b)
 	#anim.play('shooting')
 	canShoot = false
 	return true
@@ -25,14 +25,17 @@ func can_shoot() :
 	return true
 
 func _ready() -> void:
+	# asettaa tämän kohtauksen "main" kohtaukseksi 
+	# voi mistä tahansa skriptistä saada yhteyden tähän "main" nodeen
+	# Globa.main == get_tree().get_root().get_node('Main')
+	Global.main = self
 	# jos haluaa importata hahmoja 
 	#rootNode.add_child(paavopreload.instantiate())
 	pass
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("ui_shoot") and canShoot :
-		var bulletTransform = get_node('Player/GunNode/BulletStartingPoint').global_transform
-		if shoot(bulletTransform) :
+		if shoot() :
 				pass
 		if await can_shoot():
 			pass
