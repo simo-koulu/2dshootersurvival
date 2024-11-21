@@ -227,3 +227,8 @@ scale = Vector2(1.22034, 1)
 points = PackedVector2Array(-53, 0, 0, 0)
 width = 3.0
 default_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[node name="Window" type="Window" parent="."]
+initial_position = 1
+size = Vector2i(600, 120)
+visible = false

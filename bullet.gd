@@ -17,6 +17,3 @@ func _physics_process(delta):
 	if collision :
 		if collision.get_collider() is StaticBody2D or CollisionShape2D :
 			self.queue_free()
-
-func _on_timer_timeout() :
-	queue_free()
