@@ -1,46 +1,34 @@
 extends Node2D
 class_name Main
 
-@onready var paavopreload = preload("res://paavonpc.tscn")
+@onready var paavopreload = preload("res://NPC/paavonpc.tscn")
 
 var max_mobs : int
 
 #aseen muuttujat 
-var preloadBullet = preload('res://Bullet.tscn')
-var canShoot: bool = true
-var fireRate: float = 800		#rounds per minute 
-var fireRateTimer: float = 60 / fireRate
+
 #käytetään jos on animoitavaa 
 #@onready var anim = get_node("Player/GunNode/AnimatedSprite2D")
-
-func shoot() :
-	var bullet = preloadBullet.instantiate()
-	bullet.initialize(get_node('Player/GunNode/BulletStartingPoint').global_transform)
-	Global.main.add_sibling(bullet)
-	canShoot = false
-	return true
-	
-func can_shoot() :
-	await get_tree().create_timer(fireRateTimer).timeout
-	canShoot = true
-	return true
 
 #tähän tulee sit hyökkäyslogiikkaa mut täl hetkel ei tee viel mitää muuta ku sano "moro"
 func _on_enemyspawner_hit_p():
 	print("moro :DDDDDDD")
 
 func _ready() -> void:
+	# asettaa itsensä Glogal.main muuttujaksi, että voi mistä tahansa skriptistä kutsua Global.main 
+	# ase käyttää tätä, jolla se lisää sisar-nodena luodin Global.main.add_sibling(bullet)
 	Global.main = self
 	
 	#oli 20 alunperin
 	max_mobs = 40
-	# jos haluaa importata hahmoja 
-	#rootNode.add_child(paavopreload.instantiate())
 	pass
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("ui_shoot") and canShoot :
-		if shoot() :
-			pass
-		if await can_shoot():
-			pass
+	pass
+
+# vaihtoehtoihen tapa siirtyä huoneiden välillä
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body == Global.player:
+		print("pelaaja tuli alueelle")
+		var nextLevel = get_node("VASENALA/Doors/Door_E/Spawn").global_position
+		Global.player.global_position = nextLevel

@@ -2,7 +2,7 @@ extends Node2D
 
 signal hit_p
 
-var mob_scene := preload("res://mob.tscn")
+var mob_scene := preload("res://NPC/mob.tscn")
 var spawn_points := []
 
 #spawnpointtien (Marker2D) määrittelyä
