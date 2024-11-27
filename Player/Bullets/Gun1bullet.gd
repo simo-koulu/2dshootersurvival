@@ -8,7 +8,6 @@ func initialize(pos):
 
 func _ready() -> void:
 	get_node("Timer").start()
-	get_node("Timer").timeout.connect(_on_timer_timeout)
 	
 func _physics_process(delta):
 	var collision = move_and_collide(transform.x * speed * delta)

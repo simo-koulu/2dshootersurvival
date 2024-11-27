@@ -88,8 +88,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0iwr3")
 
-[node name="Healthbar" parent="." instance=ExtResource("1_7d43h")]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("1_7d43h")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -102,8 +103,7 @@ offset_bottom = -278.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Deadlabel" type="Label" parent="."]
-layout_mode = 1
+[node name="Deadlabel" type="Label" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.487
 anchor_top = 0.5
@@ -117,8 +117,7 @@ theme_override_fonts/font = SubResource("FontFile_l2nal")
 theme_override_font_sizes/font_size = 120
 text = "Ooot  kuollu"
 
-[node name="Pause" type="Label" parent="."]
-layout_mode = 1
+[node name="Pause" type="Label" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.505
 anchor_top = 0.512
@@ -132,15 +131,15 @@ theme_override_fonts/font = SubResource("FontFile_7sk7v")
 theme_override_font_sizes/font_size = 80
 text = "PAUSE"
 
-[node name="TextEdit" type="TextEdit" parent="Pause"]
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/Pause"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.923
 anchor_right = 0.5
 anchor_bottom = 0.923
-offset_left = -500.5
-offset_top = 0.00999451
+offset_left = -541.5
+offset_top = -85.99
 offset_right = -243.5
 offset_bottom = 210.01
 text = "liikkuu : WASD
@@ -148,10 +147,10 @@ Ampuu : F tai M1
 Pause : esc
 Sulje : Tab
 Elämät täyteen : space
-Vaihda asetta : 1 ja 2"
+Vaihda asetta : 1 ja 2 ja 3
+Zoomaa kameraa : K ja L "
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
+[node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnyyr32swdvur"]
+
+[ext_resource type="Script" path="res://Player/Bullets/Gun3bullet.gd" id="1_2msys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74gp1"]
+size = Vector2(1234.5, 33)
+
+[sub_resource type="Gradient" id="Gradient_ra5os"]
+colors = PackedColorArray(0.701961, 0, 0.776471, 1, 1, 0.0627451, 0.0627451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n4r8x"]
+gradient = SubResource("Gradient_ra5os")
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["bullet"]]
+script = ExtResource("1_2msys")
+
+[node name="Area2D" type="Area2D" parent="." groups=["bullet"]]
+position = Vector2(316.918, 9.56709)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["bullet"]]
+visibility_layer = 3
+position = Vector2(300, -10.2)
+shape = SubResource("RectangleShape2D_74gp1")
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+position = Vector2(434.065, 14.5802)
+scale = Vector2(31.6373, 1.75)
+points = PackedVector2Array(6.59226, -3.47437, -13.645, -3.47437)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(615.75, -0.499999)
+scale = Vector2(19.2734, 0.515625)
+texture = SubResource("GradientTexture2D_n4r8x")

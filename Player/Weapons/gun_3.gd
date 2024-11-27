@@ -1,11 +1,10 @@
 extends Node2D
 
-@onready var preloadBullet = preload('res://Player/Bullets/Gun1bullet.tscn')
+@onready var preloadBullet = preload('res://Player/Bullets/Gun3bullet.tscn')
 @onready var bulletStartingPoint = self.get_node("Bulletstartingpoint")
-@onready var muzzleFlash = get_node("PointLight2D")
 
 var canShoot: bool = true
-var fireRate: float = 700		#rounds per minute 
+var fireRate: float = 500		#rounds per minute 
 var fireRateTimer: float = 60 / fireRate
 
 func shoot() :
@@ -21,7 +20,7 @@ func can_shoot() :
 	return true
 
 func _ready() -> void:
-	muzzleFlash.enabled = false
+	pass
 
 func _process(delta) -> void :
 	# flippaa aseen spriten peilikuvaksi, poista kommentointi ja vaihda anim-muuttujaan spriten nimi

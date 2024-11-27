@@ -3,19 +3,22 @@ extends CharacterBody2D
 
 @onready var gun1preload = preload("res://Player/Weapons/Gun1.tscn")
 @onready var gun2preload = preload("res://Player/Weapons/Gun2.tscn")
+@onready var gun3preload = preload("res://Player/Weapons/Gun3.tscn")
 # gunRotator seuraa hiirtä, jonka lapseksi ase lisätään, joten kun sitä vaihtaa, se osoittaa aina oikeaan suuntaan
 @onready var gunRotator = get_node("Gunrotator")
+@onready var camera = get_node("Camera")
 
 var gunUsed
 var gun1
 var gun2 
+var gun3
 
 # hakee hahmon, johon verrataan onko tarpeeksi lähellä
 @onready var npc = get_node("../paavonpc")
 
 @onready var collisionShape = get_node("CollisionShape2D")
 @onready var anim = get_node("CollisionShape2D/AnimatedSprite2D")
-@onready var UI = get_node("UI")
+@onready var UI = get_node("Camera/UI")
 
 var speed = 600
 var health = 400
@@ -46,12 +49,16 @@ func _got_hit(damage) :
 func _init_gun():
 	gun1 = gun1preload.instantiate()
 	gun2 = gun2preload.instantiate()
+	gun3 = gun3preload.instantiate()
 	# lataa kummankin/niin monta kuin niitä halutaan heti alkuun skeneen
 	gunRotator.add_child(gun1)
 	gunRotator.add_child(gun2)
-	# poistaa toisen aseen käytöstä
+	gunRotator.add_child(gun3)
+	# poistaa muut aseet käytöstä
 	gun2.set_process(false)
 	gun2.visible = false
+	gun3.set_process(false)
+	gun3.visible = false
 	gunUsed = gun1 
 
 # vois todennäkösesti olla paljon kliinimpi mut nyt ei kiinnosta
@@ -63,6 +70,8 @@ func _set_gun(gun):
 		gunUsed = gun1
 	elif gun == 2 : 
 		gunUsed = gun2
+	elif gun == 3 :
+		gunUsed = gun3
 	gunUsed.visible = true
 	gunUsed.set_process(true)
 
@@ -100,7 +109,18 @@ func _physics_process(delta):
 		_set_gun(1)
 	if Input.is_action_just_pressed("ui_select_gun2") and gunUsed != gun2 :
 		_set_gun(2)
+	if Input.is_action_just_pressed("ui_select_gun3") and gunUsed != gun3 :
+		_set_gun(3)
 
+	if Input.is_action_just_pressed("ui_zoom_in") :
+		if camera.zoom.x <= 1.3 :
+			camera.zoom.x = camera.zoom.x + 0.1
+			camera.zoom.y = camera.zoom.y + 0.1
+	if Input.is_action_just_pressed("ui_zoom_out") :
+		if camera.zoom.x >= 0.6:
+			camera.zoom.x = camera.zoom.x - 0.1
+			camera.zoom.y = camera.zoom.y - 0.1
+		
 func _readyy():
 	NavigationManager.on_trigger_player_spawn.connect(_on_spawn)
 	

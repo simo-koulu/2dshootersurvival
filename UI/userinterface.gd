@@ -1,9 +1,9 @@
 extends Control
 
-@onready var healthBar = get_node("Healthbar")
-@onready var deadText = get_node("Deadlabel")
-@onready var pauseMenu = get_node("Pause")
-@onready var label = get_node("Label")
+@onready var healthBar = get_node("CanvasLayer/Healthbar")
+@onready var deadText = get_node("CanvasLayer/Deadlabel")
+@onready var pauseMenu = get_node("CanvasLayer/Pause")
+@onready var label = get_node("CanvasLayer/Label")
 
 var paused = false
 
