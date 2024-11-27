@@ -1,6 +1,6 @@
 extends Node2D
 
-signal hit_p
+#signal hit_p
 
 var mobs_created = []
 var mob_scene := preload("res://NPC/mob.tscn")

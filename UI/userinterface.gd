@@ -24,7 +24,7 @@ func _ready() -> void:
 	pauseMenu.visible = false
 	label.visible = false
 
-func _physics_process(delta) :
+func _physics_process(_delta) :
 	if Input.is_action_just_pressed("ui_cancel"):
 		_pause()
 	

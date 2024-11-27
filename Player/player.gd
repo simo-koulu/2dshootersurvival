@@ -18,7 +18,7 @@ var gun3
 
 @onready var collisionShape = get_node("CollisionShape2D")
 @onready var anim = get_node("CollisionShape2D/AnimatedSprite2D")
-@onready var UI = get_node("Camera/UI")
+@onready var UI = get_node("UI")
 
 var speed = 600
 var health = 400
@@ -79,7 +79,14 @@ func _ready():
 	_init_gun()
 	NavigationManager.on_trigger_player_spawn.connect(_on_spawn)
 	
-func _physics_process(delta):
+func _physics_process(_delta):
+	
+	if Input.is_action_just_pressed("ui_restart") : 
+		print("restart")
+		Global.paused = false
+		Engine.time_scale = 1
+		get_tree().change_scene_to_file("res://levels/Main.tscn")
+		
 	# jos peli ei pausella tai pelaaja kuollut
 	if !Global.paused : 
 		move_and_slide()
@@ -104,11 +111,6 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("ui_accept"):
 			UI.healthBar._init_bar(maxHealth)
 			health = maxHealth
-		
-		if Input.is_action_just_pressed("ui_restart") : 
-			Global.paused = false
-			Engine.time_scale = 1
-			get_tree().change_scene_to_file("res://levels/Main.tscn")
 
 		if Input.is_action_just_pressed("ui_select_gun1") and gunUsed != gun1 :
 			_set_gun(1)

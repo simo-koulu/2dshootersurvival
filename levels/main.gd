@@ -21,8 +21,8 @@ func _ready() -> void:
 	max_mobs = 10
 	pass
 
-func _process(delta: float) -> void:
-	pass
+#func _process(delta: float) -> void:
+	#pass
 
 # vaihtoehtoihen tapa siirtyä huoneiden välillä
 func _on_area_2d_body_entered(body: Node2D) -> void:

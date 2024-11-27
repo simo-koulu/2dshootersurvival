@@ -4,7 +4,7 @@ extends Node2D
 @onready var bulletStartingPoint = self.get_node("Bulletstartingpoint")
 
 var canShoot: bool = true
-var fireRate: float = 200		#rounds per minute 
+var fireRate: float = 100		#rounds per minute 
 var fireRateTimer: float = 60 / fireRate
 
 func shoot() :
@@ -22,7 +22,7 @@ func can_shoot() :
 func _ready() -> void:
 	pass
 
-func _process(delta) -> void :
+func _process(_delta) -> void :
 	# flippaa aseen spriten peilikuvaksi, poista kommentointi ja vaihda anim-muuttujaan spriten nimi
 	#if angle_degrees > -90 and angle_degrees < 90 :
 		#anim.flip_v = false

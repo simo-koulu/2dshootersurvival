@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var healthBar = get_node("Healthbar")
 
 var entered : bool 
-var speed = 100 # oli 100
+var speed : int # oli 100
 var direction : Vector2
 var collision
 var enemies_dead = Global.main.get_node("enemyspawner").enemies_died
@@ -15,7 +15,7 @@ var health : float = 150
 
 var damageToPlayer = 20
 
-signal hit_player
+#signal hit_player
 
 func play_blood_animation (location) :
 	bloodAnim.position = location
@@ -29,6 +29,7 @@ func _ready():
 	direction = screen_rect.get_center() - position
 	entered = false
 	healthBar._init_bar(health)
+	speed = randi_range(90, 110)
 
 #kun mobi on kentän sisällä ja juoksu sen vähän aikaa nii sit se alkaa jahtaa pelaajaa
 func _physics_process(delta):
