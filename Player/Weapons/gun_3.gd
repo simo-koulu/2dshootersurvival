@@ -22,7 +22,7 @@ func can_shoot() :
 func _ready() -> void:
 	pass
 
-func _process(delta) -> void :
+func _process(_delta) -> void :
 	# flippaa aseen spriten peilikuvaksi, poista kommentointi ja vaihda anim-muuttujaan spriten nimi
 	#if angle_degrees > -90 and angle_degrees < 90 :
 		#anim.flip_v = false

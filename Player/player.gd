@@ -18,7 +18,7 @@ var gun3
 
 @onready var collisionShape = get_node("CollisionShape2D")
 @onready var anim = get_node("CollisionShape2D/AnimatedSprite2D")
-@onready var UI = get_node("Camera/UI")
+@onready var UI = get_node("UI")
 
 var speed = 600
 var health = 400
@@ -26,20 +26,18 @@ var maxHealth = health
 
 # hoitaa liikkumisen
 func _get_input():
-	# jos peli ei pausella tai pelaaja kuollut
-	if !UI.paused : 
-		var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		velocity = input_direction * speed
-		
-		if velocity != Vector2.ZERO:
-			anim.play('run')
-		else: 
-			anim.play('idle')
+	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	velocity = input_direction * speed
+	
+	if velocity != Vector2.ZERO:
+		anim.play('run')
+	else: 
+		anim.play('idle')
 
-		if velocity.x < 0:
-			anim.flip_h = true
-		elif velocity.x > 0:
-			anim.flip_h = false
+	if velocity.x < 0:
+		anim.flip_h = true
+	elif velocity.x > 0:
+		anim.flip_h = false
 
 # mobin skripti suorittaa tämän funktion joka kerta, ennen kun se tekee lyömis animaation
 func _got_hit(damage) : 
@@ -81,45 +79,54 @@ func _ready():
 	_init_gun()
 	NavigationManager.on_trigger_player_spawn.connect(_on_spawn)
 	
-func _physics_process(delta):
-	move_and_slide()
-	_get_input()
-	#print(self.global_position)
-
-	if health <= 0 :
-		UI.deadText.visible = true
-		UI.healthBar._set_health(0)
-		UI.paused = true
-		Engine.time_scale = 0
-
-	# jos tarpeeksi lähellä jotain hahmoa, laita tekstipalikka näkyviin
-	# tässä esimerkissä hahmo on paavo, hahmo pitää hakea erikseen get_nodella.
-	var distance = collisionShape.global_position.distance_to(npc.global_position)
-	if distance <= 150:
-		UI.label.visible = true
-	else :
-		UI.label.visible = false
+func _physics_process(_delta):
 	
-	# lataa elämät täyteen välilyönnistä
-	if Input.is_action_just_pressed("ui_accept"):
-		UI.healthBar._init_bar(maxHealth)
-		health = maxHealth
+	if Input.is_action_just_pressed("ui_restart") : 
+		print("restart")
+		Global.paused = false
+		Engine.time_scale = 1
+		get_tree().change_scene_to_file("res://levels/Main.tscn")
+		
+	# jos peli ei pausella tai pelaaja kuollut
+	if !Global.paused : 
+		move_and_slide()
+		_get_input()
+		#print(self.global_position)
 
-	if Input.is_action_just_pressed("ui_select_gun1") and gunUsed != gun1 :
-		_set_gun(1)
-	if Input.is_action_just_pressed("ui_select_gun2") and gunUsed != gun2 :
-		_set_gun(2)
-	if Input.is_action_just_pressed("ui_select_gun3") and gunUsed != gun3 :
-		_set_gun(3)
+		if health <= 0 :
+			UI.deadText.visible = true
+			UI.healthBar._set_health(0)
+			Global.paused = true
+			Engine.time_scale = 0
 
-	if Input.is_action_just_pressed("ui_zoom_in") :
-		if camera.zoom.x <= 1.3 :
-			camera.zoom.x = camera.zoom.x + 0.1
-			camera.zoom.y = camera.zoom.y + 0.1
-	if Input.is_action_just_pressed("ui_zoom_out") :
-		if camera.zoom.x >= 0.6:
-			camera.zoom.x = camera.zoom.x - 0.1
-			camera.zoom.y = camera.zoom.y - 0.1
+		# jos tarpeeksi lähellä jotain hahmoa, laita tekstipalikka näkyviin
+		# tässä esimerkissä hahmo on paavo, hahmo pitää hakea erikseen get_nodella.
+		var distance = collisionShape.global_position.distance_to(npc.global_position)
+		if distance <= 150:
+			UI.label.visible = true
+		else :
+			UI.label.visible = false
+		
+		# lataa elämät täyteen välilyönnistä
+		if Input.is_action_just_pressed("ui_accept"):
+			UI.healthBar._init_bar(maxHealth)
+			health = maxHealth
+
+		if Input.is_action_just_pressed("ui_select_gun1") and gunUsed != gun1 :
+			_set_gun(1)
+		if Input.is_action_just_pressed("ui_select_gun2") and gunUsed != gun2 :
+			_set_gun(2)
+		if Input.is_action_just_pressed("ui_select_gun3") and gunUsed != gun3 :
+			_set_gun(3)
+
+		if Input.is_action_just_pressed("ui_zoom_in") :
+			if camera.zoom.x <= 1.3 :
+				camera.zoom.x = camera.zoom.x + 0.1
+				camera.zoom.y = camera.zoom.y + 0.1
+		if Input.is_action_just_pressed("ui_zoom_out") :
+			if camera.zoom.x >= 0.6:
+				camera.zoom.x = camera.zoom.x - 0.1
+				camera.zoom.y = camera.zoom.y - 0.1
 		
 func _readyy():
 	NavigationManager.on_trigger_player_spawn.connect(_on_spawn)

@@ -5,8 +5,6 @@ class_name Main
 
 var max_mobs : int
 
-#aseen muuttujat 
-
 #käytetään jos on animoitavaa 
 #@onready var anim = get_node("Player/GunNode/AnimatedSprite2D")
 
@@ -20,11 +18,11 @@ func _ready() -> void:
 	Global.main = self
 	
 	#oli 20 alunperin
-	max_mobs = 40
+	max_mobs = 10
 	pass
 
-func _process(delta: float) -> void:
-	pass
+#func _process(delta: float) -> void:
+	#pass
 
 # vaihtoehtoihen tapa siirtyä huoneiden välillä
 func _on_area_2d_body_entered(body: Node2D) -> void:

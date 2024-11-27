@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed: int = 700
+var speed: int = 800
 var damage : float = 120
 
 func initialize(pos):
@@ -10,7 +10,7 @@ func _ready() -> void:
 	get_node("Timer").start()
 	
 func _physics_process(delta):
-	var collision = move_and_collide(transform.x * speed * delta)
+	move_and_collide(transform.x * speed * delta)
 
 func _on_timer_timeout() :
 	queue_free()

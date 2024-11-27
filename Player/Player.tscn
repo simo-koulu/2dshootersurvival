@@ -138,7 +138,8 @@ scale = Vector2(3.59375, 3.84375)
 sprite_frames = SubResource("SpriteFrames_yxqb5")
 animation = &"run"
 
-[node name="Camera" type="Camera2D" parent="."]
-
-[node name="UI" parent="Camera" instance=ExtResource("5_jsrol")]
+[node name="UI" parent="." instance=ExtResource("5_jsrol")]
 layout_direction = 1
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)

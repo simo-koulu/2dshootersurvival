@@ -148,10 +148,11 @@ Pause : esc
 Sulje : Tab
 Elämät täyteen : space
 Vaihda asetta : 1 ja 2 ja 3
-Zoomaa kameraa : K ja L "
+Zoomaa kameraa : K ja L 
+Restarttaa tason : Y"
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
