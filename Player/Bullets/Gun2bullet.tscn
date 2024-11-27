@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bokcvmn44ntiu"]
+
+[ext_resource type="Script" path="res://Player/Bullets/Gun2bullet.gd" id="1_apvyo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kbe1r"]
+radius = 22.0227
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_apvyo")
+
+[node name="Area2D" type="Area2D" parent="." groups=["bullet"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["bullet"]]
+visibility_layer = 3
+shape = SubResource("CircleShape2D_kbe1r")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-2.16441, 0.749996)
+scale = Vector2(2.42144, 3.29545)
+points = PackedVector2Array(6.26257, 1.89655, -3.6489, -2.95862)
+default_color = Color(1, 0.172549, 1, 1)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

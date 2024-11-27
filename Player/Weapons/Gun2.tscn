@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://by7v5f07dj1gv"]
+
+[ext_resource type="Script" path="res://Player/Weapons/gun_2.gd" id="1_c5xqg"]
+
+[sub_resource type="Curve" id="Curve_socs5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.958333, 0.208791), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="GunNode" type="Node2D"]
+script = ExtResource("1_c5xqg")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-8.92112, 0)
+scale = Vector2(0.448007, 1)
+points = PackedVector2Array(145, 0, 23.6047, 0)
+width = 20.0
+width_curve = SubResource("Curve_socs5")
+
+[node name="Bulletstartingpoint" type="Node2D" parent="."]
+position = Vector2(56, 0)

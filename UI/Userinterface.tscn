@@ -1,0 +1,167 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsukc8thfp172"]
+
+[ext_resource type="Script" path="res://UI/userinterface.gd" id="1_0iwr3"]
+[ext_resource type="PackedScene" uid="uid://bjl45lcauw7wt" path="res://UI/Healthbar.tscn" id="1_7d43h"]
+
+[sub_resource type="FontFile" id="FontFile_l2nal"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/120/0/ascent = 0.0
+cache/0/120/0/descent = 0.0
+cache/0/120/0/underline_position = 0.0
+cache/0/120/0/underline_thickness = 0.0
+cache/0/120/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_7sk7v"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
+cache/0/451/0/ascent = 0.0
+cache/0/451/0/descent = 0.0
+cache/0/451/0/underline_position = 0.0
+cache/0/451/0/underline_thickness = 0.0
+cache/0/451/0/scale = 1.0
+cache/0/45/0/ascent = 0.0
+cache/0/45/0/descent = 0.0
+cache/0/45/0/underline_position = 0.0
+cache/0/45/0/underline_thickness = 0.0
+cache/0/45/0/scale = 1.0
+cache/0/4560/0/ascent = 0.0
+cache/0/4560/0/descent = 0.0
+cache/0/4560/0/underline_position = 0.0
+cache/0/4560/0/underline_thickness = 0.0
+cache/0/4560/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_kr1xj"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/35/0/ascent = 0.0
+cache/0/35/0/descent = 0.0
+cache/0/35/0/underline_position = 0.0
+cache/0/35/0/underline_thickness = 0.0
+cache/0/35/0/scale = 1.0
+
+[node name="UI" type="Control"]
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0iwr3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("1_7d43h")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -573.0
+offset_top = -321.0
+offset_right = -166.0
+offset_bottom = -278.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Deadlabel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.487
+anchor_top = 0.5
+anchor_right = 0.487
+anchor_bottom = 0.5
+offset_left = -307.024
+offset_top = -91.0
+offset_right = 354.976
+offset_bottom = 76.0
+theme_override_fonts/font = SubResource("FontFile_l2nal")
+theme_override_font_sizes/font_size = 120
+text = "Ooot  kuollu"
+
+[node name="Pause" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.505
+anchor_top = 0.512
+anchor_right = 0.505
+anchor_bottom = 0.512
+offset_left = -122.76
+offset_top = -173.776
+offset_right = 120.24
+offset_bottom = -43.776
+theme_override_fonts/font = SubResource("FontFile_7sk7v")
+theme_override_font_sizes/font_size = 80
+text = "PAUSE"
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/Pause"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.923
+anchor_right = 0.5
+anchor_bottom = 0.923
+offset_left = -541.5
+offset_top = -85.99
+offset_right = -243.5
+offset_bottom = 210.01
+text = "liikkuu : WASD
+Ampuu : F tai M1
+Pause : esc
+Sulje : Tab
+Elämät täyteen : space
+Vaihda asetta : 1 ja 2 ja 3
+Zoomaa kameraa : K ja L 
+Restarttaa tason : Y"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 91.0
+offset_right = 95.0
+offset_bottom = 143.0
+theme_override_fonts/font = SubResource("FontFile_kr1xj")
+theme_override_font_sizes/font_size = 25
+text = "press E to interact"
+metadata/_edit_use_anchors_ = true
