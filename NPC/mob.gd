@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var player = Global.main.get_node("Player")
+@onready var player = Global.player
 @onready var animation = $AnimatedSprite2D
 @onready var bloodAnim = $Bloodanimation
 @onready var area2d = get_node("Area2D")
