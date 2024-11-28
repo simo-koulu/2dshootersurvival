@@ -15,8 +15,6 @@ var health : float = 150
 
 var damageToPlayer = 20
 
-#signal hit_player
-
 func play_blood_animation (location) :
 	bloodAnim.position = location
 	bloodAnim.visible = true

@@ -85,7 +85,8 @@ func _physics_process(_delta):
 		print("restart")
 		Global.paused = false
 		Engine.time_scale = 1
-		get_tree().change_scene_to_file("res://levels/Main.tscn")
+		#get_tree().change_scene_to_file("res://levels/Main.tscn")
+		get_tree().reload_current_scene()
 		
 	# jos peli ei pausella tai pelaaja kuollut
 	if !Global.paused : 

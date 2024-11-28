@@ -4,8 +4,10 @@ extends CharacterBody2D
 @onready var timer = get_node("Bulletlife")
 @onready var enemyDetector = get_node("Enemydetection")
 
+var velocit = Vector2.ZERO
+var acceleration : int = 400
 var speed: int = 2000
-var damage : float = 120
+var damage : float = 150
 var enemyList := []
 var lowestDistance = INF
 var distance 
@@ -13,14 +15,13 @@ var target
 var tracking = false
 
 func initialize(pos):
-	transform = pos
+	global_position = pos
 
 func _search_target() :
 	print("searching")
 	for mob in enemyList : 
 		if mob != null :
 			distance = self.global_position.distance_to(mob.global_position)
-			print(distance)
 			
 			if distance < lowestDistance :
 				lowestDistance = distance
@@ -37,12 +38,14 @@ func _track_target():
 
 func _ready() -> void:
 	get_node("Searchtimer").start()
-	pass
 	
 func _physics_process(delta):
 	if tracking :
-		move_and_collide(transform.x * speed * delta)
-		
+		var acceleration_vector = global_transform.x * acceleration * delta
+		velocity += acceleration_vector
+		velocity = velocity.limit_length(speed)
+		move_and_collide(velocity)
+		#move_and_collide(transform.x * speed * delta)
 
 func _on_timer_timeout() :
 	queue_free()
@@ -51,15 +54,6 @@ func _on_searchtimer_timeout() -> void:
 	if target == null :
 		_search_target()
 
-# jos osuu mobiin, tuhoaa itsensä
-# voi lisätä sieiniä tai muita hahmoja jos siltä tuntuu 
-# pitää vain lisätä sille hahmolle Area2D ja sille joku ryhmä
-#func _on_area_2d_area_entered(area: Area2D) -> void:
-	#if area.is_in_group("enemy"):
-		#self.queue_free()
-
-
 func _on_enemydetection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") :
-		print("vihollinen tuli alueelle ")
 		enemyList.append(area)

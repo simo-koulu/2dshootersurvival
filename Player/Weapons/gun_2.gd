@@ -4,12 +4,12 @@ extends Node2D
 @onready var bulletStartingPoint = self.get_node("Bulletstartingpoint")
 
 var canShoot: bool = true
-var fireRate: float = 400		#rounds per minute 
+var fireRate: float = 100		#rounds per minute 
 var fireRateTimer: float = 60 / fireRate
 
 func shoot() :
 	var bullet = preloadBullet.instantiate()
-	bullet.initialize(bulletStartingPoint.global_transform)
+	bullet.initialize(bulletStartingPoint.global_position)
 	Global.main.add_sibling(bullet)
 	canShoot = false
 	return true
