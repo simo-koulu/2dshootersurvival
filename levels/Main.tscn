@@ -306,15 +306,15 @@ scale = Vector2(1, 0.993022)
 tile_set = SubResource("TileSet_h1u33")
 format = 2
 
+[node name="enemyspawner" parent="." instance=ExtResource("5_askae")]
+position = Vector2(-605, -505)
+
 [node name="Player" parent="." instance=ExtResource("3_cf2rv")]
 position = Vector2(6, 435)
 
 [node name="paavonpc" parent="." instance=ExtResource("4_rn6ao")]
 visible = false
 position = Vector2(539, 78)
-
-[node name="enemyspawner" parent="." instance=ExtResource("5_askae")]
-position = Vector2(-188, -229)
 
 [node name="Room1handler" type="Node2D" parent="."]
 visible = false

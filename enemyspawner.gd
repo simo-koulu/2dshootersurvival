@@ -26,7 +26,7 @@ func _on_timer_timeout():
 	#randomisoi mihin spawnpointtiin mobi spawnaa
 		var spawn = spawn_points[randi() % spawn_points.size()]
 		var mob = mob_scene.instantiate()
-		mob.position = spawn.position
+		mob.global_position = spawn.global_position
 
 	
 		Global.main.add_child(mob)
@@ -47,8 +47,9 @@ func _on_timer_timeout():
 		waves_cleared.append(1)
 		
 		#jos alkaneiden wavejen määrä on alle 5 nii sit alkaa aina uus wave jossa zombien spawnausaika puolittuu. 
-		if waves_cleared.size() < 5: #  <--------- tost voi säätää montako wavee tapahtuu
+		if waves_cleared.size() < 10: #  <--------- tost voi säätää montako wavee tapahtuu
 			enemies_died.clear()
-			wait_time = wait_time / 2 # <------------ tost voi säätää et kuinka paljon se zombien..
+			if wait_time >= 0.2 :
+				wait_time = wait_time / 2 # <------------ tost voi säätää et kuinka paljon se zombien..
 		#.. spawnausaika tihenee joka kerta ku uus wave alkaa. Täl hetkel jakaa sen aina kahella
 			timer.set_wait_time(wait_time)

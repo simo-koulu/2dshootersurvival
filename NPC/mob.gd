@@ -26,10 +26,10 @@ func play_blood_animation (location) :
 	
 func _ready():
 	var screen_rect = get_viewport_rect()
-	direction = screen_rect.get_center() - position
+	direction = screen_rect.get_center() - global_position
 	entered = false
 	healthBar._init_bar(health)
-	speed = randi_range(90, 110)
+	speed = randi_range(85, 115)
 
 #kun mobi on kentän sisällä ja juoksu sen vähän aikaa nii sit se alkaa jahtaa pelaajaa
 func _physics_process(delta):

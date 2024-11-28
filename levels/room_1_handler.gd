@@ -6,12 +6,12 @@ extends Node2D
 func _on_player_detector_area_body_entered(body: Node2D) -> void:
 	if body == Global.player :
 		print("pelaaja tuli huoneeseen 1 ")
-		#room1Spawner.set_process(true)
+		room1Spawner.set_process(true)
 	
 func _on_player_detector_area_body_exited(body: Node2D) -> void:
 	if body == Global.player : 
 		print("pelaaja lähti huoneesta 1 ")
-		#room1Spawner.set_process(false)
+		room1Spawner.set_process(false)
 
 # ovi ylös 
 func _on_door_up_body_entered(body: Node2D) -> void:
