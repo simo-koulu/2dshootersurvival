@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dshrxapy1blub"]
+
+[ext_resource type="AudioStream" uid="uid://bn42lmavoj7ek" path="res://zombie.wav" id="1_8txf5"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_8txf5")
+autoplay = true

@@ -15,7 +15,7 @@ var gun3
 
 # hakee hahmon, johon verrataan onko tarpeeksi lähellä
 @onready var npc = get_node("../paavonpc")
-
+@onready var walking_sound = $AudioStreamPlayer2D
 @onready var collisionShape = get_node("CollisionShape2D")
 @onready var anim = get_node("CollisionShape2D/AnimatedSprite2D")
 @onready var UI = get_node("UI")
@@ -31,6 +31,9 @@ func _get_input():
 	
 	if velocity != Vector2.ZERO:
 		anim.play('run')
+		if !walking_sound.playing:
+			walking_sound.pitch_scale = randf_range(0.8, 0.9)
+			walking_sound.play()
 	else: 
 		anim.play('idle')
 

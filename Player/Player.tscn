@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dixxm3lfknjlc"]
+[gd_scene load_steps=22 format=3 uid="uid://dixxm3lfknjlc"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_u56ws"]
 [ext_resource type="Script" path="res://Player/gunrotator.gd" id="2_lb34q"]
 [ext_resource type="Texture2D" uid="uid://drom4lxsaq7mk" path="res://assets/SpriteSheets/satiro-Sheet v1.1.png" id="2_rh7ca"]
+[ext_resource type="AudioStream" uid="uid://ywg1fg4u0afb" path="res://assets/Free Footsteps Pack/Concrete 2.wav" id="5_0jsgr"]
 [ext_resource type="PackedScene" uid="uid://bsukc8thfp172" path="res://UI/Userinterface.tscn" id="5_jsrol"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6bgu"]
@@ -143,3 +144,7 @@ layout_direction = 1
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0jsgr")
+volume_db = 1.5

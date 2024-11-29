@@ -7,11 +7,15 @@ extends Node2D
 var canShoot: bool = true
 var fireRate: float = 700		#rounds per minute 
 var fireRateTimer: float = 60 / fireRate
+@onready var shooting_sound = $AudioStreamPlayer2D
 
 func shoot() :
 	var bullet = preloadBullet.instantiate()
 	bullet.initialize(bulletStartingPoint.global_transform)
 	Global.main.add_sibling(bullet)
+	shooting_sound.play()
+	shooting_sound.pitch_scale = randf_range(0.7, 0.8)
+		
 	canShoot = false
 	return true
 	

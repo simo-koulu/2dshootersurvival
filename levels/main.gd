@@ -19,6 +19,7 @@ func _ready() -> void:
 	
 	#oli 20 alunperin
 	max_mobs = 10
+	
 	pass
 
 #func _process(delta: float) -> void:
