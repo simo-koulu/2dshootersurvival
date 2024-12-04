@@ -165,3 +165,12 @@ theme_override_fonts/font = SubResource("FontFile_kr1xj")
 theme_override_font_sizes/font_size = 25
 text = "press E to interact"
 metadata/_edit_use_anchors_ = true
+
+[node name="Damageindicator" type="ColorRect" parent="CanvasLayer"]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.721569, 0.0196078, 0.0156863, 0.419608)

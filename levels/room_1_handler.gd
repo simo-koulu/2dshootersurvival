@@ -7,12 +7,14 @@ func _on_player_detector_area_body_entered(body: Node2D) -> void:
 	if body == Global.player :
 		print("pelaaja tuli huoneeseen 1 ")
 		room1Spawner.set_process(true)
+		Global.room1Entered = true
 	
 func _on_player_detector_area_body_exited(body: Node2D) -> void:
 	if body == Global.player : 
 		print("pelaaja lähti huoneesta 1 ")
 		room1Spawner.set_process(false)
-
+		Global.room1Entered = false
+		
 # ovi ylös 
 func _on_door_up_body_entered(body: Node2D) -> void:
 	if body == Global.player and Global.room1Cleared:

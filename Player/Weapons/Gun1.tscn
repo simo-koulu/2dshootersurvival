@@ -1,38 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://b36rsj10ilnau"]
+[gd_scene load_steps=4 format=3 uid="uid://b36rsj10ilnau"]
 
 [ext_resource type="Script" path="res://Player/Weapons/gun_1.gd" id="1_wh60y"]
-[ext_resource type="AudioStream" uid="uid://dyak87ywkcmwx" path="res://Snake's Authentic Gun Sounds/Full Sound/7.62x39/WAV/762x39 Single WAV.wav" id="2_yldvi"]
+[ext_resource type="AudioStream" uid="uid://dyak87ywkcmwx" path="res://assets/Snake's Authentic Gun Sounds/Full Sound/7.62x39/WAV/762x39 Single WAV.wav" id="2_yldvi"]
 
 [sub_resource type="Curve" id="Curve_k8xa5"]
 _data = [Vector2(0, 0.296703), 0.0, 0.0, 0, 0, Vector2(0.270833, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.554167, 0.384615), 0.0, 0.0, 0, 0, Vector2(0.966667, 0.010989), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Gradient" id="Gradient_vmi33"]
-offsets = PackedFloat32Array(0, 0.245)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqtoc"]
-gradient = SubResource("Gradient_vmi33")
-fill_from = Vector2(0, 0.460366)
-fill_to = Vector2(1, 0.469512)
-
 [node name="GunNode" type="Node2D"]
 script = ExtResource("1_wh60y")
 
-[node name="Bulletstartingpoint" type="Node2D" parent="."]
-position = Vector2(64, 0)
+[node name="Bulletstartingpoint" type="Marker2D" parent="."]
+z_index = 1
+position = Vector2(66, 0)
 
 [node name="Line2D" type="Line2D" parent="."]
 rotation = 3.14159
 scale = Vector2(1.22034, 1)
-points = PackedVector2Array(-53, 0, -13.7918, 0, 0, 0)
+points = PackedVector2Array(-54.0833, -0.000167322, -13.7918, 0, 0, 0)
 width = 30.0
 width_curve = SubResource("Curve_k8xa5")
 default_color = Color(0, 0, 0, 1)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(95, 0)
-scale = Vector2(2.3125, 1.34375)
-texture = SubResource("GradientTexture2D_dqtoc")
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(63, 0)
 stream = ExtResource("2_yldvi")

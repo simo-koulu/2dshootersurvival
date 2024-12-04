@@ -5,10 +5,12 @@ extends Node2D
 
 func _on_player_detector_area_body_entered(body: Node2D) -> void:
 	if body == Global.player : 
+		Global.room2Entered = true
 		print("pelaja tuli huoneeseen 2")
 
 func _on_player_detector_area_body_exited(body: Node2D) -> void:
 	if body == Global.player : 
+		Global.room2Entered = true
 		print("pelaaja lähti huoneesta 2 ")
 
 # ovi alas 

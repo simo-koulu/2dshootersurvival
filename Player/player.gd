@@ -4,14 +4,15 @@ extends CharacterBody2D
 @onready var gun1preload = preload("res://Player/Weapons/Gun1.tscn")
 @onready var gun2preload = preload("res://Player/Weapons/Gun2.tscn")
 @onready var gun3preload = preload("res://Player/Weapons/Gun3.tscn")
+@onready var gun4preload = preload("res://Player/Weapons/Gun4.tscn")
 # gunRotator seuraa hiirtä, jonka lapseksi ase lisätään, joten kun sitä vaihtaa, se osoittaa aina oikeaan suuntaan
 @onready var gunRotator = get_node("Gunrotator")
 @onready var camera = get_node("Camera")
 
 var gunUsed
-var gun1
-var gun2 
-var gun3
+var gunIndex : int 
+enum gunSelector { GUN0, GUN1, GUN2, GUN3 }
+var gunList : Array = []
 
 # hakee hahmon, johon verrataan onko tarpeeksi lähellä
 @onready var npc = get_node("../paavonpc")
@@ -20,9 +21,10 @@ var gun3
 @onready var anim = get_node("CollisionShape2D/AnimatedSprite2D")
 @onready var UI = get_node("UI")
 
-var speed = 600
-var health = 400
-var maxHealth = health
+@onready var speed : int = Global.export.playerSpeed
+@onready var health : int = Global.export.playerHealth
+@onready var immortal : bool = Global.export.playerImmortal
+var maxHealth
 
 # hoitaa liikkumisen
 func _get_input():
@@ -44,39 +46,44 @@ func _get_input():
 
 # mobin skripti suorittaa tämän funktion joka kerta, ennen kun se tekee lyömis animaation
 func _got_hit(damage) : 
-	health = health - damage
-	UI.healthBar._set_health(health)
+	if !immortal : 
+		if Global.camera.trauma <= 0.5 :
+			Global.camera.add_trauma(0.6, 4)
+		UI._take_damage()
+		health = health - damage
+		UI.healthBar._set_health(health)
+		immortal = true
+	else : pass
+	await get_tree().create_timer(0.5).timeout
+	immortal = false
 
 func _init_gun():
-	gun1 = gun1preload.instantiate()
-	gun2 = gun2preload.instantiate()
-	gun3 = gun3preload.instantiate()
-	# lataa kummankin/niin monta kuin niitä halutaan heti alkuun skeneen
-	gunRotator.add_child(gun1)
-	gunRotator.add_child(gun2)
-	gunRotator.add_child(gun3)
-	# poistaa muut aseet käytöstä
-	gun2.set_process(false)
-	gun2.visible = false
-	gun3.set_process(false)
-	gun3.visible = false
-	gunUsed = gun1 
+	gunList.append(gun1preload.instantiate())
+	gunList.append(gun2preload.instantiate())
+	gunList.append(gun3preload.instantiate())
+	gunList.append(gun4preload.instantiate())
+	# ensimmäisenä ladattava ase / default 
+	gunIndex = gunSelector.GUN0
+	gunUsed = gunList[gunIndex]
+	
+	for gun in gunList :
+		gunRotator.add_child(gun)
+		
+		if gun != gunUsed :
+			gun.set_process(false)
+			gun.visible = false
+		else : pass
 
 # vois todennäkösesti olla paljon kliinimpi mut nyt ei kiinnosta
-# pitää myös tehdä joku korjaus että ase ei pysyy siinä kohtaa missä hiiri on eikä aloita joka kerta oletus sijainnista
-func _set_gun(gun):
+func _set_gun():
 	gunUsed.set_process(false)
 	gunUsed.visible = false
-	if gun == 1 :
-		gunUsed = gun1
-	elif gun == 2 : 
-		gunUsed = gun2
-	elif gun == 3 :
-		gunUsed = gun3
+	gunUsed = gunList[gunIndex]
 	gunUsed.visible = true
 	gunUsed.set_process(true)
 
-func _ready():
+func _ready() :
+	maxHealth = health
 	Global.player = self
 	UI.healthBar._init_bar(health)
 	_init_gun()
@@ -95,7 +102,6 @@ func _physics_process(_delta):
 	if !Global.paused : 
 		move_and_slide()
 		_get_input()
-		#print(self.global_position)
 
 		if health <= 0 :
 			UI.deadText.visible = true
@@ -116,12 +122,18 @@ func _physics_process(_delta):
 			UI.healthBar._init_bar(maxHealth)
 			health = maxHealth
 
-		if Input.is_action_just_pressed("ui_select_gun1") and gunUsed != gun1 :
-			_set_gun(1)
-		if Input.is_action_just_pressed("ui_select_gun2") and gunUsed != gun2 :
-			_set_gun(2)
-		if Input.is_action_just_pressed("ui_select_gun3") and gunUsed != gun3 :
-			_set_gun(3)
+		if Input.is_action_just_pressed("ui_select_gun1") and gunIndex != gunSelector.GUN0 :
+			gunIndex = gunSelector.GUN0
+			_set_gun()
+		if Input.is_action_just_pressed("ui_select_gun2") and gunIndex != gunSelector.GUN1 :
+			gunIndex = gunSelector.GUN1
+			_set_gun()
+		if Input.is_action_just_pressed("ui_select_gun3") and gunIndex != gunSelector.GUN2 :
+			gunIndex = gunSelector.GUN2
+			_set_gun()
+		if Input.is_action_just_pressed("ui_select_gun4") and gunIndex != gunSelector.GUN3 :
+			gunIndex = gunSelector.GUN3
+			_set_gun()
 
 		if Input.is_action_just_pressed("ui_zoom_in") :
 			if camera.zoom.x <= 1.3 :

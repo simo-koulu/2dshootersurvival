@@ -16,7 +16,6 @@ func _ready() -> void:
 	# asettaa itsensä Glogal.main muuttujaksi, että voi mistä tahansa skriptistä kutsua Global.main 
 	# ase käyttää tätä, jolla se lisää sisar-nodena luodin Global.main.add_sibling(bullet)
 	Global.main = self
-	
 	#oli 20 alunperin
 	max_mobs = 10
 	

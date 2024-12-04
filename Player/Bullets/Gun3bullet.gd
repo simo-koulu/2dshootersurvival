@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var speed: int = 0
-var damage : float = 1000
+var gun3Speed: int = 0
+var damage : int = Global.export.gun3BulletDamage
 
 func initialize(pos):
 	transform = pos

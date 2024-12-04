@@ -7,11 +7,11 @@ extends CharacterBody2D
 @onready var enemyDetector = get_node("Enemydetection")
 @onready var anim = get_node("Animation")
 @onready var animPlayer = get_node("AnimationPlayer")
+@onready var particles = get_node("GPUParticles2D")
 
-var velocit = Vector2.ZERO
-var acceleration : int = 400
-var speed: int = 2000
-var damage : float = 100
+var gun2Acceleration : int = Global.export.gun2BulletAcceleration
+var gun2Speed : int = Global.export.gun2BulletSpeed
+var damage : int = Global.export.gun2BulletDamage
 var enemyList := []
 var lowestDistance = INF
 var distance 
@@ -48,11 +48,16 @@ func _track_target():
 		area2d.monitorable = true
 		tracking = true
 		flightTimer.start()
+		particles.emitting = true
+		if Global.camera.trauma <= 75.0 / 100.0 :
+			Global.camera.add_trauma(50, 0.6)
 
 func _ready() -> void:	
 	searchTimer.start()
 	bulletLife.start()
 	anim.play("default")
+	particles.emitting = false
+	velocity = Vector2.ZERO
 	
 func _physics_process(delta):
 	
@@ -62,9 +67,9 @@ func _physics_process(delta):
 		anim.flip_v = false
 	
 	if tracking :
-		var acceleration_vector = global_transform.x * acceleration * delta
+		var acceleration_vector = global_transform.x * gun2Acceleration * delta
 		velocity += acceleration_vector
-		velocity = velocity.limit_length(speed)
+		velocity = velocity.limit_length(gun2Speed)
 		move_and_collide(velocity)
 		#move_and_collide(transform.x * speed * delta)
 

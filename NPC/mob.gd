@@ -7,13 +7,12 @@ extends CharacterBody2D
 @onready var healthBar = get_node("Healthbar")
 
 var entered : bool 
-var speed : int # oli 100
 var direction : Vector2
 var collision
 var enemies_dead = Global.main.get_node("enemyspawner").enemies_died
-var health : float = 150
-
-var damageToPlayer = 20
+var health : int = Global.export.zombieHealth
+var damage : int = Global.export.zombieDamage
+var speed : int = randi_range(Global.export.zombieSpeed[0], Global.export.zombieSpeed[1])
 
 func play_blood_animation (location) :
 	bloodAnim.position = location
@@ -27,7 +26,6 @@ func _ready():
 	direction = screen_rect.get_center() - global_position
 	entered = false
 	healthBar._init_bar(health)
-	speed = randi_range(85, 115)
 
 #kun mobi on kentän sisällä ja juoksu sen vähän aikaa nii sit se alkaa jahtaa pelaajaa
 func _physics_process(delta):
@@ -44,13 +42,29 @@ func _physics_process(delta):
 	else : 
 		animation.flip_h = false
 
+	while area2d.global_position.distance_to(player.global_position) <= 100 :
+			# kääntää mobin pelaajaa päin, muuten saataisi jäädä huitomaan väärään suuntaan
+			if player.global_position.x - self.global_position.x < 0 :
+				animation.flip_h = true
+			else : 
+				animation.flip_h = false
+			
+			self.set_physics_process(false)
+			# varmaan tähän väliin se koodi, joka vahingoitta pelaajaa eli hit_player.emit() ??? ja siihen jotain muokkausta
+			# suorittaa pelaajan skriptistä funktion joka vähentää siltä elämää
+			# vois ehkä käyttää signaaleja mutta ei ne varmaa ois parempia 
+			player._got_hit(damage)
+			animation.play("attack")
+			await animation.animation_finished
+			self.set_physics_process(true)
+
 func _on_entrancetimer_timeout():
 	entered = true
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("bullet") :
 		# hakee damagen sen luodin skriptistä mikä siihen osui
-		var gunDamage : float = area.get_parent().damage
+		var gunDamage : int = area.get_parent().damage
 		health = health - gunDamage
 		healthBar._set_health(health)
 		
@@ -81,7 +95,7 @@ func _on_area_2d_body_entered(body):
 			# varmaan tähän väliin se koodi, joka vahingoitta pelaajaa eli hit_player.emit() ??? ja siihen jotain muokkausta
 			# suorittaa pelaajan skriptistä funktion joka vähentää siltä elämää
 			# vois ehkä käyttää signaaleja mutta ei ne varmaa ois parempia 
-			player._got_hit(damageToPlayer)
+			player._got_hit(damage)
 			animation.play("attack")
 			await animation.animation_finished
 			self.set_physics_process(true)
