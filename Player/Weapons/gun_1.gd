@@ -12,6 +12,8 @@ func shoot() :
 	var bullet = preloadBullet.instantiate()
 	bullet.initialize(bulletStartingPoint.global_transform)
 	Global.main.add_sibling(bullet)
+	if Global.camera.trauma <= 70 / 100 : 
+		Global.camera.add_trauma(50, 9)
 	shooting_sound.play()
 	shooting_sound.pitch_scale = randf_range(0.7, 0.8)
 		

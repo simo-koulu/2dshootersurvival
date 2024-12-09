@@ -44,6 +44,11 @@ func _get_input():
 	elif velocity.x > 0:
 		anim.flip_h = false
 
+func _gain_health(amount):
+	if !immortal: 
+		health = clamp(health + amount, 0, maxHealth)
+		UI.healthBar._set_health(health)
+
 # mobin skripti suorittaa tämän funktion joka kerta, ennen kun se tekee lyömis animaation
 func _got_hit(damage) : 
 	if !immortal : 
@@ -121,7 +126,7 @@ func _physics_process(_delta):
 		if Input.is_action_just_pressed("ui_accept"):
 			UI.healthBar._init_bar(maxHealth)
 			health = maxHealth
-
+		
 		if Input.is_action_just_pressed("ui_select_gun1") and gunIndex != gunSelector.GUN0 :
 			gunIndex = gunSelector.GUN0
 			_set_gun()

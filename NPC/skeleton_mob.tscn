@@ -1,6 +1,6 @@
-[gd_scene load_steps=45 format=3 uid="uid://blb4p2l8csoj0"]
+[gd_scene load_steps=45 format=3 uid="uid://xclvskogofy7"]
 
-[ext_resource type="Script" path="res://levels/skeleton_mob.gd" id="1_4mcur"]
+[ext_resource type="Script" path="res://NPC/skeleton_mob.gd" id="1_13agd"]
 [ext_resource type="Texture2D" uid="uid://dwvln5adetfxu" path="res://assets/64 X 64 Skeleton 2D assets/Sprites and files/Full Sprite sheet/Attack 1 sprite sheet.png" id="2_qq5pw"]
 [ext_resource type="Texture2D" uid="uid://bxkueeistrc3x" path="res://assets/64 X 64 Skeleton 2D assets/Sprites and files/Full Sprite sheet/Death sprite sheet.png" id="3_yw62t"]
 [ext_resource type="Texture2D" uid="uid://dcka04jl347yv" path="res://assets/64 X 64 Skeleton 2D assets/Sprites and files/Full Sprite sheet/IDLE sprite sheet.png" id="4_v7m7c"]
@@ -147,7 +147,7 @@ region = Rect2(256, 0, 64, 64)
 atlas = ExtResource("5_im6d2")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_i2575"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0cgv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -174,7 +174,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8322w")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 8.0
 }, {
@@ -275,47 +275,48 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_not5l"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fjj7"]
 radius = 388.104
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4d0o6"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xkuq1"]
 radius = 28.0
 height = 118.0
 
-[node name="SkeletonMob" type="Node2D"]
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_13agd")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_4mcur")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1, 0)
 scale = Vector2(1.69531, 1.8205)
-sprite_frames = SubResource("SpriteFrames_i2575")
-animation = &"die"
+sprite_frames = SubResource("SpriteFrames_h0cgv")
+animation = &"idle"
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(4, -1)
-shape = SubResource("CircleShape2D_not5l")
+shape = SubResource("CircleShape2D_5fjj7")
 
-[node name="Healthbar" parent="CharacterBody2D" instance=ExtResource("6_bvdvi")]
+[node name="Healthbar" parent="." instance=ExtResource("6_bvdvi")]
 offset_left = -56.0
 offset_top = -92.0
 offset_right = 74.0
 offset_bottom = -83.0
 
-[node name="Timer" type="Timer" parent="CharacterBody2D"]
+[node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Area2D2" type="Area2D" parent="CharacterBody2D"]
+[node name="Area2D2" type="Area2D" parent="." groups=["enemy"]]
 position = Vector2(5, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D2" groups=["enemy"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(1, -8)
-shape = SubResource("CapsuleShape2D_4d0o6")
+shape = SubResource("CapsuleShape2D_xkuq1")
 
-[connection signal="body_entered" from="CharacterBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="CharacterBody2D/Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="CharacterBody2D/Area2D2" to="." method="_on_area_2d_2_area_entered"]
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

@@ -4,6 +4,8 @@ extends Node2D
 @onready var preloadBullet = preload('res://Player/Bullets/Gun4bullet.tscn')
 @onready var bulletStartingPoint = self.get_node("Bulletstartingpoint")
 
+@onready var shooting_sound = $AudioStreamPlayer2D
+
 var canShoot: bool = true
 var fireRate : float = Global.export.gun4FireRate		#rounds per minute 
 var fireRateTimer: float = 60 / fireRate
@@ -15,6 +17,7 @@ func shoot() :
 	pelletSpread = Global.export.gun4Spread
 	pelletSpread = randf_range(pelletSpread - randomness, pelletSpread + randomness)
 	var pelletAngle : float = get_parent().rotation_degrees - pelletSpread / 2
+	shooting_sound.play()
 	Global.camera.add_trauma(70, 3.2)
 	for i in numberofPellets :
 		var bullet = preloadBullet.instantiate()

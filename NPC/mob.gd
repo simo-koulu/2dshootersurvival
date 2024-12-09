@@ -9,7 +9,7 @@ extends CharacterBody2D
 var entered : bool 
 var direction : Vector2
 var collision
-var enemies_dead = Global.main.get_node("enemyspawner").enemies_died
+#var enemies_dead = Global.main.get_node("enemyspawner").enemies_died
 var health : int = Global.export.zombieHealth
 var damage : int = Global.export.zombieDamage
 var speed : int = randi_range(Global.export.zombieSpeed[0], Global.export.zombieSpeed[1])
@@ -31,7 +31,7 @@ func _ready():
 func _physics_process(delta):
 	animation.play("run")
 	if entered:
-		direction = (player.position - position).normalized()
+		direction = (player.global_position - global_position).normalized()
 	direction = direction.normalized()
 	#velocity = (direction * speed)
 	collision = move_and_collide(direction * speed * delta)
@@ -77,8 +77,9 @@ func _on_area_2d_area_entered(area):
 			animation.play("die")
 			await animation.animation_finished
 			self.queue_free()
-			enemies_dead.append(1)
-	# hit_player.emit() # ehkä täs kohtaa turha, vois muokata ja siirtää alla olevaan kohtaan ennen hyökkäysanimatiota 
+			if randi_range(0, 100) <= 10 :
+				Global._summon_buff(self.global_position, "health")
+			#enemies_dead.append(1)
 	
 #Kun pelaaja osuu viholliseen ni se triggeröi lyöntianimaation ja pysähtyy
 func _on_area_2d_body_entered(body):

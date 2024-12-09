@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ivm3x62haxsc"]
+
+[ext_resource type="Script" path="res://scripts/Spawner.gd" id="1_rf2qq"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_rf2qq")
+roomNumber = 1
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-6, -8)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(1395, 833)

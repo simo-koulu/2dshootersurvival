@@ -1,0 +1,281 @@
+[gd_scene load_steps=36 format=3 uid="uid://c1if76keeeohu"]
+
+[ext_resource type="Texture2D" uid="uid://6cvf13uuh2st" path="res://assets/PineForestParallax/MorningLayer6.png" id="1_niieq"]
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_smnia"]
+[ext_resource type="Texture2D" uid="uid://gdsfcgqk0q17" path="res://assets/PineForestParallax/MorningLayer5.png" id="2_j583k"]
+[ext_resource type="PackedScene" uid="uid://cpapmhdha7w0b" path="res://levels/Main.tscn" id="2_tfsef"]
+[ext_resource type="Texture2D" uid="uid://bd4f3i7wdqn8p" path="res://assets/PineForestParallax/MorningLayer4.png" id="3_gqw6l"]
+[ext_resource type="Texture2D" uid="uid://rrl50dea1bsl" path="res://assets/PineForestParallax/MorningLayer3.png" id="4_iudlu"]
+[ext_resource type="Texture2D" uid="uid://v0ydpqecxld8" path="res://assets/SpriteSheets/Zombie.png" id="5_b2het"]
+[ext_resource type="Texture2D" uid="uid://da7vwjc0eta7u" path="res://assets/PineForestParallax/MorningLayer2.png" id="6_cxy4f"]
+[ext_resource type="Texture2D" uid="uid://bapb0232tmfjt" path="res://assets/PineForestParallax/MorningLayer1.png" id="7_x3cuq"]
+[ext_resource type="Texture2D" uid="uid://drom4lxsaq7mk" path="res://assets/SpriteSheets/satiro-Sheet v1.1.png" id="8_2bbx6"]
+[ext_resource type="Texture2D" uid="uid://cywea4vfyrfbh" path="res://assets/Buttons Pixel Animation Pack/play/343px/play02.png" id="9_lphy8"]
+[ext_resource type="Texture2D" uid="uid://d3cgroaclutx0" path="res://assets/Buttons Pixel Animation Pack/play/343px/play01.png" id="10_fvlhc"]
+[ext_resource type="Texture2D" uid="uid://y7if62altwix" path="res://2D-eeppinen-shooter-zombie-su-6-12-2024.png" id="10_g6i5f"]
+[ext_resource type="Texture2D" uid="uid://cquhw0eygqj6i" path="res://assets/Buttons Pixel Animation Pack/play/343px/play03.png" id="11_bg8h0"]
+[ext_resource type="Texture2D" uid="uid://bi71n3r848qly" path="res://assets/Buttons Pixel Animation Pack/play/343px/play04.png" id="12_fgrta"]
+[ext_resource type="Texture2D" uid="uid://d3x3sw7pujp0s" path="res://assets/Buttons Pixel Animation Pack/play/343px/play05.png" id="13_emh0b"]
+[ext_resource type="AudioStream" uid="uid://c4upsxahqin4v" path="res://menutheme.mp3" id="16_ryw1d"]
+[ext_resource type="AudioStream" uid="uid://d0mg0l7ujyt36" path="res://ui_sounds/UI_button01.wav" id="17_papom"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfb1w"]
+atlas = ExtResource("5_b2het")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha1ph"]
+atlas = ExtResource("5_b2het")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luibr"]
+atlas = ExtResource("5_b2het")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tr6s"]
+atlas = ExtResource("5_b2het")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhf63"]
+atlas = ExtResource("5_b2het")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddxn4"]
+atlas = ExtResource("5_b2het")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxaon"]
+atlas = ExtResource("5_b2het")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chvme"]
+atlas = ExtResource("5_b2het")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rtstr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfb1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha1ph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luibr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tr6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhf63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddxn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxaon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chvme")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vwwk"]
+atlas = ExtResource("8_2bbx6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ki4w"]
+atlas = ExtResource("8_2bbx6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nimoy"]
+atlas = ExtResource("8_2bbx6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_capsi"]
+atlas = ExtResource("8_2bbx6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx83k"]
+atlas = ExtResource("8_2bbx6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0c6d"]
+atlas = ExtResource("8_2bbx6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0c2v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vwwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ki4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nimoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_capsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx83k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0c6d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1nil"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_lphy8")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_fvlhc")
+}],
+"loop": false,
+"name": &"no_hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_fvlhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lphy8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bg8h0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fgrta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_emh0b")
+}],
+"loop": false,
+"name": &"play",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_lphy8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bg8h0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fgrta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_emh0b")
+}],
+"loop": false,
+"name": &"play2",
+"speed": 4.0
+}]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-36, 105)
+script = ExtResource("1_smnia")
+main_scene = ExtResource("2_tfsef")
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="."]
+position = Vector2(195, 255)
+color = Color(0.868911, 0.713325, 1, 1)
+
+[node name="MorningLayer6" type="Sprite2D" parent="CanvasModulate2"]
+position = Vector2(659, 21)
+texture = ExtResource("1_niieq")
+
+[node name="MorningLayer5" type="Sprite2D" parent="CanvasModulate2"]
+position = Vector2(472, 181)
+scale = Vector2(0.408047, 0.441111)
+texture = ExtResource("2_j583k")
+
+[node name="MorningLayer4" type="Sprite2D" parent="CanvasModulate2"]
+position = Vector2(441, 110)
+scale = Vector2(0.395625, 0.405278)
+texture = ExtResource("3_gqw6l")
+
+[node name="MorningLayer3" type="Sprite2D" parent="CanvasModulate2"]
+position = Vector2(312, 50)
+scale = Vector2(0.498594, 0.465278)
+texture = ExtResource("4_iudlu")
+
+[node name="zombie" type="AnimatedSprite2D" parent="CanvasModulate2/MorningLayer3"]
+modulate = Color(0.351563, 0.351563, 0.351563, 1)
+light_mask = 2
+visibility_layer = 2
+texture_filter = 1
+position = Vector2(-549.545, 251.463)
+scale = Vector2(8.40426, 9.66919)
+sprite_frames = SubResource("SpriteFrames_rtstr")
+
+[node name="MorningLayer2" type="Sprite2D" parent="CanvasModulate2"]
+position = Vector2(601, -23)
+scale = Vector2(0.60375, 0.527778)
+texture = ExtResource("6_cxy4f")
+
+[node name="MorningLayer1" type="Sprite2D" parent="CanvasModulate2"]
+position = Vector2(664, -111)
+scale = Vector2(0.641875, 0.517917)
+texture = ExtResource("7_x3cuq")
+
+[node name="2d-eeppinen-shooter-zombie-su-6-12-2024" type="Sprite2D" parent="CanvasModulate2"]
+position = Vector2(421, -239)
+texture = ExtResource("10_g6i5f")
+
+[node name="player" type="AnimatedSprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+texture_filter = 1
+position = Vector2(627, 402)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_v0c2v")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = -0.0652114
+anchor_top = -0.166945
+anchor_right = -0.0552114
+anchor_bottom = -0.166945
+offset_left = 429.0
+offset_top = 147.0
+offset_right = 790.0
+offset_bottom = 293.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Button"]
+position = Vector2(181, 64.6081)
+scale = Vector2(0.548882, 0.574974)
+sprite_frames = SubResource("SpriteFrames_d1nil")
+animation = &"no_hover"
+autoplay = "no_hover"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(253.929, 268.914)
+stream = ExtResource("17_papom")
+pitch_scale = 0.34
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_ryw1d")
+volume_db = -4.0
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

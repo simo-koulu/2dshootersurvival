@@ -27,8 +27,8 @@ func shake():
 	offset.y = maxOffset.y * amount * noise.get_noise_2d(2000, noiseY)
 	
 func _process(delta):
-	if trauma > 0 :
-		print(trauma)
+	#if trauma > 0 :
+		#print(trauma)
 	if trauma:
 		trauma = max(trauma - decay * delta, 0)
 		shake() #optional
