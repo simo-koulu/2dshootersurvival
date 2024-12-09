@@ -8,8 +8,7 @@ extends CharacterBody2D
 
 var entered : bool 
 var direction : Vector2
-var collision
-#var enemies_dead = Global.main.get_node("enemyspawner").enemies_died
+
 var health : int = Global.export.zombieHealth
 var damage : int = Global.export.zombieDamage
 var speed : int = randi_range(Global.export.zombieSpeed[0], Global.export.zombieSpeed[1])
@@ -22,25 +21,23 @@ func play_blood_animation (location) :
 	bloodAnim.visible = false
 	
 func _ready():
-	var screen_rect = get_viewport_rect()
-	direction = screen_rect.get_center() - global_position
+	var roomCenter = get_parent().get_parent().get_node("PlayerDetectorArea/PlayerDetector").global_position
+	direction = roomCenter - global_position
+	animation.flip_h = direction.x < 0
 	entered = false
 	healthBar._init_bar(health)
 
 #kun mobi on kentän sisällä ja juoksu sen vähän aikaa nii sit se alkaa jahtaa pelaajaa
 func _physics_process(delta):
-	animation.play("run")
 	if entered:
+		animation.play("run")
 		direction = (player.global_position - global_position).normalized()
-	direction = direction.normalized()
-	#velocity = (direction * speed)
-	collision = move_and_collide(direction * speed * delta)
-	
-	#kääntää animaation riippuen mobin kulkusuunnasta
-	if direction.x < 0 : 
-		animation.flip_h = true
-	else : 
-		animation.flip_h = false
+		direction = direction.normalized()
+		#velocity = (direction * speed)
+		move_and_collide(direction * speed * delta)
+		
+		#kääntää animaation riippuen mobin kulkusuunnasta
+		animation.flip_h = direction.x < 0
 
 	while area2d.global_position.distance_to(player.global_position) <= 100 :
 			# kääntää mobin pelaajaa päin, muuten saataisi jäädä huitomaan väärään suuntaan

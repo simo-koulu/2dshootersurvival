@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://tfs5s6pwfcd"]
+
+[ext_resource type="Script" path="res://Player/Weapons/Testgun.gd" id="1_1xdus"]
+
+[sub_resource type="Curve" id="Curve_gbrgt"]
+_data = [Vector2(0, 0.296703), 0.0, 0.0, 0, 0, Vector2(0.270833, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.554167, 0.384615), 0.0, 0.0, 0, 0, Vector2(0.966667, 0.010989), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="GunNode" type="Node2D"]
+script = ExtResource("1_1xdus")
+
+[node name="Bulletstartingpoint" type="Marker2D" parent="."]
+position = Vector2(65, 0)
+
+[node name="Line2D" type="Line2D" parent="."]
+rotation = 3.14159
+scale = Vector2(1.22034, 1)
+points = PackedVector2Array(-53, 0, -13.7918, 0, 0, 0)
+width = 30.0
+width_curve = SubResource("Curve_gbrgt")
+default_color = Color(0.819608, 0, 0, 1)

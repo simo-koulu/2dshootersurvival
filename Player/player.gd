@@ -1,10 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var gun1preload = preload("res://Player/Weapons/Gun1.tscn")
-@onready var gun2preload = preload("res://Player/Weapons/Gun2.tscn")
-@onready var gun3preload = preload("res://Player/Weapons/Gun3.tscn")
-@onready var gun4preload = preload("res://Player/Weapons/Gun4.tscn")
+@onready var gun1preload = preload("res://Player/Weapons/Assaultrifle.tscn")
+@onready var gun2preload = preload("res://Player/Weapons/Shotgun.tscn")
+@onready var gun3preload = preload("res://Player/Weapons/Missilegun.tscn")
+@onready var gun4preload = preload("res://Player/Weapons/Testgun.tscn")
 # gunRotator seuraa hiirtä, jonka lapseksi ase lisätään, joten kun sitä vaihtaa, se osoittaa aina oikeaan suuntaan
 @onready var gunRotator = get_node("Gunrotator")
 @onready var camera = get_node("Camera")
@@ -95,6 +95,9 @@ func _ready() :
 	NavigationManager.on_trigger_player_spawn.connect(_on_spawn)
 	
 func _physics_process(_delta):
+	
+	#print(position)
+	#print("g  ", global_position)
 	
 	if Input.is_action_just_pressed("ui_restart") : 
 		print("restart")

@@ -31,6 +31,8 @@ func _spawn_enemies():
 	
 	for i in get_children():
 		if i is Marker2D:
+			print(i.position)
+			print("spawn  ", i.global_position)
 			spawnPoints.append(i)
 
 	await get_tree().create_timer(1).timeout
@@ -68,9 +70,9 @@ func _spawn_mob(spawn : Marker2D, mob : String) :
 		_:
 			print("väärä vihollisen nimi", "  ", mob)
 	
-	enemy.global_position = spawn.position
+	enemy.position = spawn.position
 	enemy.add_to_group("enemy")
-	get_parent().add_child(enemy)
+	self.add_child(enemy)
 	print("spawnded   ", spawned)
 	spawned = spawned + 1 
 	
