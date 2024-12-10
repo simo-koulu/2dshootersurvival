@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dageadthoif8r"]
+
+[ext_resource type="Script" path="res://scripts/Spawner.gd" id="1_nw6pb"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_nw6pb")
+roomNumber = 2
+
+[node name="Spawnline" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 1711, 0, 1714, 1042, 0, 1043, 0, 2)
+default_color = Color(1, 1, 1, 0)

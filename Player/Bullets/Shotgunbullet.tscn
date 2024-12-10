@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://5jtq01gkri77"]
+
+[ext_resource type="Script" path="res://Player/Bullets/Shotgunbullet.gd" id="1_l45lr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0yq4"]
+radius = 7.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["bullet"]]
+script = ExtResource("1_l45lr")
+
+[node name="Area2D" type="Area2D" parent="." groups=["bullet"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["bullet"]]
+visibility_layer = 3
+shape = SubResource("CircleShape2D_k0yq4")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-0.999998, 1.15484e-06)
+scale = Vector2(0.849485, 0.897727)
+points = PackedVector2Array(7, -1, -4, 1)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.4
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

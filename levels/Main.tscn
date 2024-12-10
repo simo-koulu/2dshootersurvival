@@ -1,0 +1,477 @@
+[gd_scene load_steps=37 format=3 uid="uid://cpapmhdha7w0b"]
+
+[ext_resource type="Script" path="res://levels/main.gd" id="1_0naxa"]
+[ext_resource type="PackedScene" uid="uid://dixxm3lfknjlc" path="res://Player/Player.tscn" id="3_cf2rv"]
+[ext_resource type="PackedScene" uid="uid://lq8ln11760bu" path="res://UI/Healthbottle.tscn" id="3_hbkss"]
+[ext_resource type="PackedScene" uid="uid://c0358lvfyprvx" path="res://NPC/mob.tscn" id="4_o5kf0"]
+[ext_resource type="PackedScene" uid="uid://dedryeea3bsx4" path="res://NPC/paavonpc.tscn" id="4_rn6ao"]
+[ext_resource type="PackedScene" uid="uid://xclvskogofy7" path="res://NPC/skeleton_mob.tscn" id="5_wn2w2"]
+[ext_resource type="Script" path="res://levels/room_1_handler.gd" id="6_g5f7n"]
+[ext_resource type="Script" path="res://levels/room_2_handler.gd" id="7_v5fu7"]
+[ext_resource type="Script" path="res://levels/room_3_handler.gd" id="8_c0qto"]
+[ext_resource type="AudioStream" uid="uid://bn42lmavoj7ek" path="res://zombie.wav" id="9_45bpc"]
+[ext_resource type="Script" path="res://scripts/Exportvariables.gd" id="10_gx4v8"]
+[ext_resource type="PackedScene" uid="uid://ivm3x62haxsc" path="res://levels/spawner1.tscn" id="10_p3100"]
+[ext_resource type="AudioStream" uid="uid://beqraewdp8ehn" path="res://c3.0.mp3" id="11_dg2im"]
+[ext_resource type="PackedScene" uid="uid://dageadthoif8r" path="res://levels/spawner2.tscn" id="13_do3ly"]
+[ext_resource type="PackedScene" uid="uid://cy1vxp4gwa2ns" path="res://levels/spawner3.tscn" id="14_3juv8"]
+[ext_resource type="Script" path="res://levels/room_4_handler.gd" id="15_361fv"]
+[ext_resource type="PackedScene" uid="uid://biju8lj0lful4" path="res://levels/spawner4.tscn" id="16_5kh1q"]
+[ext_resource type="Script" path="res://levels/room_5_handler.gd" id="17_g7nvy"]
+[ext_resource type="PackedScene" uid="uid://0c4s1aktnkct" path="res://levels/tile_map_layer.tscn" id="17_gyf11"]
+[ext_resource type="PackedScene" uid="uid://dsi70om5mix3e" path="res://levels/spawner5.tscn" id="18_8ssjg"]
+[ext_resource type="Script" path="res://levels/room_6_handler.gd" id="18_umd3m"]
+[ext_resource type="PackedScene" uid="uid://bmh2spvjilj00" path="res://levels/spawner6.tscn" id="20_oy0y0"]
+[ext_resource type="Script" path="res://levels/room_7_handler.gd" id="21_00enj"]
+[ext_resource type="PackedScene" uid="uid://cvqy8fjt0omfn" path="res://levels/spawner7.tscn" id="22_g7qdq"]
+[ext_resource type="Script" path="res://levels/room_8_handler.gd" id="23_0g7t8"]
+[ext_resource type="PackedScene" uid="uid://cn251hhdkfsjn" path="res://levels/spawner8.tscn" id="24_ibvj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o065t"]
+size = Vector2(1579, 1011)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86keq"]
+size = Vector2(112, 58.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mv5ee"]
+size = Vector2(1580, 1246)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kb1i5"]
+size = Vector2(115, 99.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnk5d"]
+size = Vector2(111, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfgmt"]
+size = Vector2(2436.5, 1366.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntxie"]
+size = Vector2(111, 91.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ul274"]
+size = Vector2(149.5, 113)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhkjr"]
+size = Vector2(133, 97)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b48lj"]
+size = Vector2(2317, 1406)
+
+[node name="Main" type="Node2D"]
+position = Vector2(540, 319)
+script = ExtResource("1_0naxa")
+
+[node name="Exportvariables" type="Node2D" parent="."]
+script = ExtResource("10_gx4v8")
+healthBottleScene = ExtResource("3_hbkss")
+zombieScene = ExtResource("4_o5kf0")
+skeletonScene = ExtResource("5_wn2w2")
+playerSpeed = 500
+gun1Firerate = 300.0
+gun1BulletDamage = 40
+gun4BulletDamage = 30
+gun4Spread = 30
+gun4SpreadRandomness = 10.0
+gun4Pellets = 7
+zombiesPerSkeleton1 = 8
+timeBetweenWaves1 = 5.0
+waves2 = 4
+baseEnemies2 = 11
+zombiesPerSkeleton2 = 7
+timeBetweenWaves2 = 5.0
+spawnCoolDown2 = 0.7
+mobHealth2 = [185, 255]
+mobSpeed2 = [[83, 123], [73, 113]]
+waves3 = 5
+baseEnemies3 = 12
+zombiesPerSkeleton3 = 5
+timeBetweenWaves3 = 4.5
+spawnCoolDown3 = 0.5
+mobDamage3 = [28, 48]
+mobHealth3 = [190, 260]
+mobSpeed3 = [[86, 126], [70, 110]]
+waves4 = 6
+baseEnemies4 = 13
+zombiesPerSkeleton4 = 5
+spawnCoolDown4 = 0.4
+mobDamage4 = [34, 54]
+mobHealth4 = [200, 270]
+mobSpeed4 = [[90, 130], [80, 120]]
+waves5 = 7
+baseEnemies5 = 14
+zombiesPerSkeleton5 = 4
+spawnCoolDown5 = 0.4
+mobDamage5 = [38, 58]
+mobHealth5 = [211, 282]
+mobSpeed5 = [[97, 137], [87, 127]]
+waves6 = 7
+baseEnemies6 = 13
+zombiesPerSkeleton6 = 4
+timeBetweenWaves6 = 3.0
+spawnCoolDown6 = 0.4
+mobDamage6 = [43, 62]
+mobHealth6 = [220, 290]
+mobSpeed6 = [[100, 140], [90, 130]]
+waves7 = 7
+baseEnemies7 = 14
+zombiesPerSkeleton7 = 4
+spawnCoolDown7 = 0.3
+mobDamage7 = [43, 62]
+mobHealth7 = [222, 295]
+mobSpeed7 = [[105, 140], [95, 130]]
+waves8 = 8
+baseEnemies8 = 14
+zombiesPerSkeleton8 = 2
+timeBetweenWaves8 = 3.0
+spawnCoolDown8 = 0.3
+mobDamage8 = [45, 65]
+mobHealth8 = [230, 310]
+mobSpeed8 = [[120, 140], [100, 125]]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("17_gyf11")]
+z_index = -2
+
+[node name="Player" parent="." instance=ExtResource("3_cf2rv")]
+position = Vector2(6, 435)
+
+[node name="paavonpc" parent="." instance=ExtResource("4_rn6ao")]
+position = Vector2(212, -552)
+
+[node name="Room1handler" type="Node2D" parent="."]
+position = Vector2(-400, -595)
+script = ExtResource("6_g5f7n")
+
+[node name="Spawner" parent="Room1handler" instance=ExtResource("10_p3100")]
+position = Vector2(-443, 74)
+
+[node name="PlayerDetectorArea" type="Area2D" parent="Room1handler"]
+
+[node name="PlayerDetector" type="CollisionShape2D" parent="Room1handler/PlayerDetectorArea"]
+position = Vector2(405.5, 564.5)
+shape = SubResource("RectangleShape2D_o065t")
+
+[node name="DOOR_UP" type="Area2D" parent="Room1handler"]
+position = Vector2(410, 165)
+
+[node name="Door_up_detector" type="CollisionShape2D" parent="Room1handler/DOOR_UP"]
+position = Vector2(-6, -74)
+shape = SubResource("RectangleShape2D_86keq")
+
+[node name="Spawn" type="Marker2D" parent="Room1handler/DOOR_UP"]
+position = Vector2(0, -14)
+
+[node name="Room2handler" type="Node2D" parent="."]
+position = Vector2(-285, -1461)
+script = ExtResource("7_v5fu7")
+
+[node name="Spawner" parent="Room2handler" instance=ExtResource("13_do3ly")]
+position = Vector2(-570, -1068)
+
+[node name="PlayerDetectorArea" type="Area2D" parent="Room2handler"]
+position = Vector2(-59, -38)
+
+[node name="PlayerDetector" type="CollisionShape2D" parent="Room2handler/PlayerDetectorArea"]
+position = Vector2(350, -512)
+shape = SubResource("RectangleShape2D_mv5ee")
+
+[node name="DOOR_DOWN" type="Area2D" parent="Room2handler"]
+position = Vector2(295, -117)
+
+[node name="Door_down_detector" type="CollisionShape2D" parent="Room2handler/DOOR_DOWN"]
+position = Vector2(-2.5, 67.75)
+shape = SubResource("RectangleShape2D_kb1i5")
+
+[node name="Spawn" type="Marker2D" parent="Room2handler/DOOR_DOWN"]
+position = Vector2(0, -17)
+
+[node name="DOOR_UP" type="Area2D" parent="Room2handler"]
+position = Vector2(150, -1095)
+
+[node name="Door_up_detector" type="CollisionShape2D" parent="Room2handler/DOOR_UP"]
+position = Vector2(140.5, 3)
+shape = SubResource("RectangleShape2D_lnk5d")
+
+[node name="Spawn" type="Marker2D" parent="Room2handler/DOOR_UP"]
+position = Vector2(140, 95)
+
+[node name="Room3handler" type="Node2D" parent="."]
+position = Vector2(-293, -3221)
+script = ExtResource("8_c0qto")
+
+[node name="Spawner" parent="Room3handler" instance=ExtResource("14_3juv8")]
+position = Vector2(-899, -1439)
+
+[node name="PlayerDetectorArea" type="Area2D" parent="Room3handler"]
+position = Vector2(-134, -53)
+
+[node name="PlayerDetector" type="CollisionShape2D" parent="Room3handler/PlayerDetectorArea"]
+position = Vector2(424.5, -691.5)
+shape = SubResource("RectangleShape2D_rfgmt")
+
+[node name="DOOR_DOWN" type="Area2D" parent="Room3handler"]
+position = Vector2(160, -55)
+
+[node name="Door_down_detector" type="CollisionShape2D" parent="Room3handler/DOOR_DOWN"]
+position = Vector2(138.5, -16.75)
+shape = SubResource("RectangleShape2D_ntxie")
+
+[node name="Spawn" type="Marker2D" parent="Room3handler/DOOR_DOWN"]
+position = Vector2(137, -120)
+
+[node name="DOOR_LEFT" type="Area2D" parent="Room3handler"]
+position = Vector2(-868, -495)
+
+[node name="Door_left_detector" type="CollisionShape2D" parent="Room3handler/DOOR_LEFT"]
+position = Vector2(-14, -202.5)
+shape = SubResource("RectangleShape2D_ul274")
+
+[node name="Spawn" type="Marker2D" parent="Room3handler/DOOR_LEFT"]
+position = Vector2(98.75, -207)
+
+[node name="DOOR_RIGHT" type="Area2D" parent="Room3handler"]
+position = Vector2(1510, -563)
+
+[node name="Door_right_detector" type="CollisionShape2D" parent="Room3handler/DOOR_RIGHT"]
+position = Vector2(-39.5, -126.5)
+shape = SubResource("RectangleShape2D_jhkjr")
+
+[node name="Spawn" type="Marker2D" parent="Room3handler/DOOR_RIGHT"]
+position = Vector2(-156, -127)
+
+[node name="DOOR_UP" type="Area2D" parent="Room3handler"]
+position = Vector2(165, -1431)
+
+[node name="Door_up_detector" type="CollisionShape2D" parent="Room3handler/DOOR_UP"]
+position = Vector2(140.5, 3)
+shape = SubResource("RectangleShape2D_lnk5d")
+
+[node name="Spawn" type="Marker2D" parent="Room3handler/DOOR_UP"]
+position = Vector2(140, 95)
+
+[node name="Room4handler" type="Node2D" parent="."]
+position = Vector2(-5009, -4017)
+script = ExtResource("15_361fv")
+
+[node name="Spawner" parent="Room4handler" instance=ExtResource("16_5kh1q")]
+position = Vector2(174, -609)
+
+[node name="PlayerDetectorArea" type="Area2D" parent="Room4handler"]
+position = Vector2(2, 169)
+
+[node name="PlayerDetector" type="CollisionShape2D" parent="Room4handler/PlayerDetectorArea"]
+position = Vector2(1390, -119)
+shape = SubResource("RectangleShape2D_b48lj")
+
+[node name="DOOR_RIGHT" type="Area2D" parent="Room4handler"]
+position = Vector2(2587, 243)
+
+[node name="Door_right_detector" type="CollisionShape2D" parent="Room4handler/DOOR_RIGHT"]
+position = Vector2(-39.5, -126.5)
+shape = SubResource("RectangleShape2D_jhkjr")
+
+[node name="Spawn" type="Marker2D" parent="Room4handler/DOOR_RIGHT"]
+position = Vector2(-156, -127)
+
+[node name="DOOR_UP" type="Area2D" parent="Room4handler"]
+position = Vector2(1233, -621)
+
+[node name="Door_up_detector" type="CollisionShape2D" parent="Room4handler/DOOR_UP"]
+position = Vector2(140.5, 3)
+shape = SubResource("RectangleShape2D_lnk5d")
+
+[node name="Spawn" type="Marker2D" parent="Room4handler/DOOR_UP"]
+position = Vector2(140, 95)
+
+[node name="Room5handler" type="Node2D" parent="."]
+position = Vector2(-5144, -6518)
+script = ExtResource("17_g7nvy")
+
+[node name="Spawner" parent="Room5handler" instance=ExtResource("18_8ssjg")]
+position = Vector2(178, -616)
+
+[node name="PlayerDetectorArea" type="Area2D" parent="Room5handler"]
+position = Vector2(2, 169)
+
+[node name="PlayerDetector" type="CollisionShape2D" parent="Room5handler/PlayerDetectorArea"]
+position = Vector2(1381.5, -99)
+shape = SubResource("RectangleShape2D_b48lj")
+
+[node name="DOOR_RIGHT" type="Area2D" parent="Room5handler"]
+position = Vector2(2594, 254)
+
+[node name="Door_right_detector" type="CollisionShape2D" parent="Room5handler/DOOR_RIGHT"]
+position = Vector2(-39.5, -126.5)
+shape = SubResource("RectangleShape2D_jhkjr")
+
+[node name="Spawn" type="Marker2D" parent="Room5handler/DOOR_RIGHT"]
+position = Vector2(-156, -127)
+
+[node name="DOOR_DOWN" type="Area2D" parent="Room5handler"]
+position = Vector2(1241, 771)
+
+[node name="Door_down_detector" type="CollisionShape2D" parent="Room5handler/DOOR_DOWN"]
+position = Vector2(138.5, -16.75)
+shape = SubResource("RectangleShape2D_ntxie")
+
+[node name="Spawn" type="Marker2D" parent="Room5handler/DOOR_DOWN"]
+position = Vector2(137, -120)
+
+[node name="Room6handler" type="Node2D" parent="."]
+position = Vector2(-282, -5757)
+script = ExtResource("18_umd3m")
+
+[node name="Spawner" parent="Room6handler" instance=ExtResource("20_oy0y0")]
+position = Vector2(-892, -1428)
+
+[node name="PlayerDetectorArea" type="Area2D" parent="Room6handler"]
+position = Vector2(-134, -53)
+
+[node name="PlayerDetector" type="CollisionShape2D" parent="Room6handler/PlayerDetectorArea"]
+position = Vector2(441.75, -645.25)
+shape = SubResource("RectangleShape2D_rfgmt")
+
+[node name="DOOR_DOWN" type="Area2D" parent="Room6handler"]
+position = Vector2(172, -38)
+
+[node name="Door_down_detector" type="CollisionShape2D" parent="Room6handler/DOOR_DOWN"]
+position = Vector2(138.5, -16.75)
+shape = SubResource("RectangleShape2D_ntxie")
+
+[node name="Spawn" type="Marker2D" parent="Room6handler/DOOR_DOWN"]
+position = Vector2(137, -120)
+
+[node name="DOOR_LEFT" type="Area2D" parent="Room6handler"]
+position = Vector2(-869, -490)
+
+[node name="Door_left_detector" type="CollisionShape2D" parent="Room6handler/DOOR_LEFT"]
+position = Vector2(-14, -202.5)
+shape = SubResource("RectangleShape2D_ul274")
+
+[node name="Spawn" type="Marker2D" parent="Room6handler/DOOR_LEFT"]
+position = Vector2(98.75, -207)
+
+[node name="DOOR_RIGHT" type="Area2D" parent="Room6handler"]
+position = Vector2(1523, -560)
+
+[node name="Door_right_detector" type="CollisionShape2D" parent="Room6handler/DOOR_RIGHT"]
+position = Vector2(-39.5, -126.5)
+shape = SubResource("RectangleShape2D_jhkjr")
+
+[node name="Spawn" type="Marker2D" parent="Room6handler/DOOR_RIGHT"]
+position = Vector2(-156, -127)
+
+[node name="Room7handler" type="Node2D" parent="."]
+position = Vector2(3224, -3211)
+script = ExtResource("21_00enj")
+
+[node name="Spawner" parent="Room7handler" instance=ExtResource("22_g7qdq")]
+position = Vector2(-888, -1426)
+
+[node name="PlayerDetectorArea" type="Area2D" parent="Room7handler"]
+position = Vector2(-134, -53)
+
+[node name="PlayerDetector" type="CollisionShape2D" parent="Room7handler/PlayerDetectorArea"]
+position = Vector2(454, -690)
+shape = SubResource("RectangleShape2D_rfgmt")
+
+[node name="DOOR_LEFT" type="Area2D" parent="Room7handler"]
+position = Vector2(-855, -492)
+
+[node name="Door_left_detector" type="CollisionShape2D" parent="Room7handler/DOOR_LEFT"]
+position = Vector2(-14, -202.5)
+shape = SubResource("RectangleShape2D_ul274")
+
+[node name="Spawn" type="Marker2D" parent="Room7handler/DOOR_LEFT"]
+position = Vector2(98.75, -207)
+
+[node name="DOOR_UP" type="Area2D" parent="Room7handler"]
+position = Vector2(190, -1426)
+
+[node name="Door_up_detector" type="CollisionShape2D" parent="Room7handler/DOOR_UP"]
+position = Vector2(140.5, 3)
+shape = SubResource("RectangleShape2D_lnk5d")
+
+[node name="Spawn" type="Marker2D" parent="Room7handler/DOOR_UP"]
+position = Vector2(140, 95)
+
+[node name="Room8handler" type="Node2D" parent="."]
+position = Vector2(3301, -5704)
+script = ExtResource("23_0g7t8")
+
+[node name="Spawner" parent="Room8handler" instance=ExtResource("24_ibvj7")]
+position = Vector2(-912, -1446)
+
+[node name="PlayerDetectorArea" type="Area2D" parent="Room8handler"]
+position = Vector2(-134, -53)
+
+[node name="PlayerDetector" type="CollisionShape2D" parent="Room8handler/PlayerDetectorArea"]
+position = Vector2(427, -664)
+shape = SubResource("RectangleShape2D_rfgmt")
+
+[node name="DOOR_DOWN" type="Area2D" parent="Room8handler"]
+position = Vector2(154, -60)
+
+[node name="Door_down_detector" type="CollisionShape2D" parent="Room8handler/DOOR_DOWN"]
+position = Vector2(138.5, -16.75)
+shape = SubResource("RectangleShape2D_ntxie")
+
+[node name="Spawn" type="Marker2D" parent="Room8handler/DOOR_DOWN"]
+position = Vector2(137, -120)
+
+[node name="DOOR_LEFT" type="Area2D" parent="Room8handler"]
+position = Vector2(-886, -504)
+
+[node name="Door_left_detector" type="CollisionShape2D" parent="Room8handler/DOOR_LEFT"]
+position = Vector2(-14, -202.5)
+shape = SubResource("RectangleShape2D_ul274")
+
+[node name="Spawn" type="Marker2D" parent="Room8handler/DOOR_LEFT"]
+position = Vector2(98.75, -207)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(3297, -3075)
+stream = ExtResource("11_dg2im")
+volume_db = 1.372
+autoplay = true
+max_distance = 1e+06
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-2146, -3067)
+stream = ExtResource("9_45bpc")
+volume_db = -3.961
+max_distance = 1e+06
+
+[connection signal="body_entered" from="Room1handler/PlayerDetectorArea" to="Room1handler" method="_on_player_detector_area_body_entered"]
+[connection signal="body_exited" from="Room1handler/PlayerDetectorArea" to="Room1handler" method="_on_player_detector_area_body_exited"]
+[connection signal="body_entered" from="Room1handler/DOOR_UP" to="Room1handler" method="_on_door_up_body_entered"]
+[connection signal="body_entered" from="Room2handler/PlayerDetectorArea" to="Room2handler" method="_on_player_detector_area_body_entered"]
+[connection signal="body_exited" from="Room2handler/PlayerDetectorArea" to="Room2handler" method="_on_player_detector_area_body_exited"]
+[connection signal="body_entered" from="Room2handler/DOOR_DOWN" to="Room2handler" method="_on_door_down_body_entered"]
+[connection signal="body_entered" from="Room2handler/DOOR_UP" to="Room2handler" method="_on_door_up_body_entered"]
+[connection signal="body_entered" from="Room3handler/PlayerDetectorArea" to="Room3handler" method="_on_player_detector_area_body_entered"]
+[connection signal="body_exited" from="Room3handler/PlayerDetectorArea" to="Room3handler" method="_on_player_detector_area_body_exited"]
+[connection signal="body_entered" from="Room3handler/DOOR_DOWN" to="Room3handler" method="_on_door_down_body_entered"]
+[connection signal="body_entered" from="Room3handler/DOOR_LEFT" to="Room3handler" method="_on_door_left_body_entered"]
+[connection signal="body_entered" from="Room3handler/DOOR_RIGHT" to="Room3handler" method="_on_door_right_body_entered"]
+[connection signal="body_entered" from="Room3handler/DOOR_UP" to="Room3handler" method="_on_door_up_body_entered"]
+[connection signal="body_entered" from="Room4handler/PlayerDetectorArea" to="Room4handler" method="_on_player_detector_area_body_entered"]
+[connection signal="body_exited" from="Room4handler/PlayerDetectorArea" to="Room4handler" method="_on_player_detector_area_body_exited"]
+[connection signal="body_entered" from="Room4handler/DOOR_RIGHT" to="Room4handler" method="_on_door_right_body_entered"]
+[connection signal="body_entered" from="Room4handler/DOOR_UP" to="Room4handler" method="_on_door_up_body_entered"]
+[connection signal="body_entered" from="Room5handler/PlayerDetectorArea" to="Room5handler" method="_on_player_detector_area_body_entered"]
+[connection signal="body_exited" from="Room5handler/PlayerDetectorArea" to="Room5handler" method="_on_player_detector_area_body_exited"]
+[connection signal="body_entered" from="Room5handler/DOOR_RIGHT" to="Room5handler" method="_on_door_right_body_entered"]
+[connection signal="body_entered" from="Room5handler/DOOR_DOWN" to="Room5handler" method="_on_door_down_body_entered"]
+[connection signal="body_entered" from="Room6handler/PlayerDetectorArea" to="Room6handler" method="_on_player_detector_area_body_entered"]
+[connection signal="body_exited" from="Room6handler/PlayerDetectorArea" to="Room6handler" method="_on_player_detector_area_body_exited"]
+[connection signal="body_entered" from="Room6handler/DOOR_DOWN" to="Room6handler" method="_on_door_down_body_entered"]
+[connection signal="body_entered" from="Room6handler/DOOR_LEFT" to="Room6handler" method="_on_door_left_body_entered"]
+[connection signal="body_entered" from="Room6handler/DOOR_RIGHT" to="Room6handler" method="_on_door_right_body_entered"]
+[connection signal="body_entered" from="Room7handler/PlayerDetectorArea" to="Room7handler" method="_on_player_detector_area_body_entered"]
+[connection signal="body_exited" from="Room7handler/PlayerDetectorArea" to="Room7handler" method="_on_player_detector_area_body_exited"]
+[connection signal="body_entered" from="Room7handler/DOOR_LEFT" to="Room7handler" method="_on_door_left_body_entered"]
+[connection signal="body_entered" from="Room7handler/DOOR_UP" to="Room7handler" method="_on_door_up_body_entered"]
+[connection signal="body_entered" from="Room8handler/PlayerDetectorArea" to="Room8handler" method="_on_player_detector_area_body_entered"]
+[connection signal="body_exited" from="Room8handler/PlayerDetectorArea" to="Room8handler" method="_on_player_detector_area_body_exited"]
+[connection signal="body_entered" from="Room8handler/DOOR_DOWN" to="Room8handler" method="_on_door_down_body_entered"]
+[connection signal="body_entered" from="Room8handler/DOOR_LEFT" to="Room8handler" method="_on_door_left_body_entered"]
